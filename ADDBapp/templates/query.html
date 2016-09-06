@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h3>Make queries about molecules on datasets in interest</h3>
+	<br>
+	<p>This query provides analytical results for specific molecules accross specific samples residing in the same category. For example, you can look into the "AD-vs-Control" analysis for all "RNA" samples extracted in "brain" from brain region "PFC" within the databse </p>
+	<p>Please select filters for samples on particular data type, tissue, category, category value, comparison</p>
+	<p>Input molecule you are interested in in the text area</p>
+	<div class="query-form">
+		<form method="post" enctype="multipart/form-data">
+			<div id="forms">
+				{% csrf_token %}
+			    {{ form }}
+			</div>
+			<input type="submit" value="Submit Query"/>
+		</form>
+	</div>
+{% endblock %}

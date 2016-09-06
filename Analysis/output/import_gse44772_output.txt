@@ -1,0 +1,18 @@
+nohup: ignoring input
+complete file path /home/vagrant/alzexpress/ADDB/Analysis/data/gse44772.json.txt
+Processing: data/gse44772.json.txt
+Full file path: /home/vagrant/alzexpress/ADDB/Analysis/data/gse44772.json.txt
+Traceback (most recent call last):
+  File "data_importer.py", line 72, in <module>
+    import_file(file_path, import_client)
+  File "data_importer.py", line 23, in import_file
+    for prefix, event, content in input_json:
+  File "/usr/local/lib/python2.7/dist-packages/ijson/common.py", line 65, in parse
+    for event, value in basic_events:
+  File "/usr/local/lib/python2.7/dist-packages/ijson/backends/python.py", line 185, in basic_parse
+    for value in parse_value(lexer):
+  File "/usr/local/lib/python2.7/dist-packages/ijson/backends/python.py", line 108, in parse_value
+    pos, symbol = next(lexer)
+  File "/usr/local/lib/python2.7/dist-packages/ijson/backends/python.py", line 25, in Lexer
+    if type(f.read(0)) == bytetype:
+AttributeError: 'str' object has no attribute 'read'

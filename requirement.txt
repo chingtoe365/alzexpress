@@ -1,0 +1,7 @@
+argparse
+scipy
+django
+numpy
+pandas
+pymongo
+progressbar

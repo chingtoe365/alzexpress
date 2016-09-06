@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div id="sample_count"></div>
+	<div id="gender_count"></div>
+	<div id="region_count"></div>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% include 'partials/_summary_pie.js' %}
+		$(function () {
+		    var sample_count = $('#sample_count');
+		    var gender_count = $('#gender_count');
+		    var region_count = $('#region_count');
+		    // var sample_count = $('#sample_count');
+		    pie_chart(sample_count, {{ sample_proportion | safe }}, 'Sample proportion for different datasets');
+		    pie_chart(gender_count, {{ gender_proportion | safe }}, 'Sample proportion for different gender');
+		    pie_chart(region_count, {{ region_proportion | safe }}, 'Sample proportion for different regions');
+		});
+    </script>
+{% endblock %}

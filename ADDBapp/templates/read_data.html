@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p>Read data into database</p>
+	<p>You should upload txt file downloaded from GEO</p>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Upload">
+<!-- 		<input type="file" name="docfile" id="id_docfile"/>
+		<input type="submit" />
+ -->
+	</form>
+	<p>{{ message }}</p>
+{% endblock %}

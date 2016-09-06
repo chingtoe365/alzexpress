@@ -1,0 +1,12 @@
+sudo apt-get update
+
+sudo apt-get install git apache2 libapache2-mod-wsgi mongodb-server python-pip python-virtualenv build-essential python-dev expect-dev python-scipy python-matplotlib
+
+pip install -r requirements.txt
+
+### or you can separately install the following in the ubuntu machine ###
+sudo apt-get install python-pip
+sudo apt-get install python-virtualenv
+sudo apt-get install build-essential python-dev
+sudo apt-get install expect-dev
+sudo apt-get install mongodb-server

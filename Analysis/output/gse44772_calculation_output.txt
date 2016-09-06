@@ -1,0 +1,26 @@
+nohup: ignoring input
+sep
+['GSE44772']
+Datasets to be calculated: ['GSE44772']
+Calculating stats of dataset GSE44772 ...
+Warning: Annotation missing for 13351 probes
+Variables prepared
+Processing region in the CE group
+Expression table extracted
+Statistics calculated
+Stats will be stored in collection name: RNA_brain_region-CE_AD-vs-Control
+Statistics stored
+Finished calculation of region in the CE group
+Processing region in the PFC group
+Expression table extracted
+Statistics calculated
+Stats will be stored in collection name: RNA_brain_region-PFC_AD-vs-Control
+Statistics stored
+Finished calculation of region in the PFC group
+Processing region in the VI group
+Expression table extracted
+Statistics calculated
+Stats will be stored in collection name: RNA_brain_region-VI_AD-vs-Control
+Statistics stored
+Finished calculation of region in the VI group
+Separate datasets calculation finished!

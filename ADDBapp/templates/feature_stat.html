@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p class="title">Queried results</p>
+	<p>{{ test_stat|length }} datasets found for the query</p>
+	<div class="query-content">
+		 <div class="query-item">
+		 	{{datatype}}
+		 </div>		 
+		 <div class="query-item">
+		 	{{tissue}}
+		 </div>		 
+		 <div class="query-item">
+		 	{{category}}
+		 </div>		 
+		 <div class="query-item">
+		 	{{group}}
+		 </div>		 
+		 <div class="query-item">
+		 	{{comparison}}
+		 </div>		 
+		 <div class="query-item">
+		 	{{features}}
+		 </div>		 
+		 <div class="query-item">
+		 	{{way_to_choose_probe}}
+		 </div>
+	</div>
+	{% for dataset, content in test_stat.items %}
+	<!-- {{ k }} : {{ v }} -->
+	{% with link="/detail/?dataset="|add:dataset|add:"&datatype="|add:datatype|add:"&tissue="|add:tissue|add:"&category="|add:category|add:"&group="|add:group|add:"&comparison="|add:comparison|add:"&features="|add:features|add:"&way_to_choose_probe="|add:way_to_choose_probe %}
+	<p class="dataset-title"><a href="{{ link }}">{{ dataset }}</a></p>
+	{% endwith %}
+	<table class="table">
+		<thead>
+	    <tr>
+	        <th>Feature</th>
+	        <th>Fold change</th>
+	        <th>Limma z score</th>
+	        <th>Limma p value</th>
+	        <th>T-test z score</th>
+	        <th>T-test p value</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+    		{% for probe in content %}
+			<tr>
+				<td>{{ probe.symb }}</td>
+				<td>{{ probe.fc|floatformat:"-3" }}</td>
+				<td>{{ probe.lt|floatformat:"-3" }}</td>
+				<td>{{ probe.lp|floatformat:"-3" }}</td>
+				<td>{{ probe.tt|floatformat:"-3" }}</td>
+				<td>{{ probe.tp|floatformat:"-3" }}</td>
+
+			</tr>
+    		{% endfor %}
+	    	
+	    </tbody>
+
+	</table>
+	<div id="heatmap-chart-{{ dataset }}">
+		
+	</div>
+	{% endfor %}
+	{% with meta_link="/meta/?datatype="|add:datatype|add:"&tissue="|add:tissue|add:"&category="|add:category|add:"&group="|add:group|add:"&comparison="|add:comparison|add:"&features="|add:features %}
+	<a class="obvious" href="{{ meta_link }}">See Meta-analysis result</a>
+	{% endwith %}
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+#test{
+	overflow: auto;	
+	width: 2000px;
+	height: 1000px;
+}	
+
+</style>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

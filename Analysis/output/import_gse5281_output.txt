@@ -1,0 +1,5 @@
+nohup: ignoring input
+complete file path /home/vagrant/alzexpress/ADDB/Analysis/data/gse5281.json.txt
+Processing: data/gse5281.json.txt
+Full file path: /home/vagrant/alzexpress/ADDB/Analysis/data/gse5281.json.txt
+Import successed!

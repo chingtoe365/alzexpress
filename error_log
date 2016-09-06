@@ -1,0 +1,256 @@
+[Tue Aug 30 19:17:53.747006 2016] [core:notice] [pid 2469] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:17:53.749048 2016] [suexec:notice] [pid 2469] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:17:53.771268 2016] [auth_digest:notice] [pid 2469] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:17:53.773097 2016] [lbmethod_heartbeat:notice] [pid 2469] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:17:53.778468 2016] [mpm_prefork:notice] [pid 2469] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:17:53.778519 2016] [core:notice] [pid 2469] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:26:02.972602 2016] [mpm_prefork:notice] [pid 2469] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:26:04.071809 2016] [core:notice] [pid 2723] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:26:04.073715 2016] [suexec:notice] [pid 2723] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:26:04.094191 2016] [auth_digest:notice] [pid 2723] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:26:04.095747 2016] [lbmethod_heartbeat:notice] [pid 2723] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:26:04.114368 2016] [mpm_prefork:notice] [pid 2723] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:26:04.114410 2016] [core:notice] [pid 2723] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:29:08.622391 2016] [mpm_prefork:notice] [pid 2723] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:29:09.710414 2016] [core:notice] [pid 2777] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:29:09.712240 2016] [suexec:notice] [pid 2777] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:29:09.734096 2016] [auth_digest:notice] [pid 2777] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:29:09.735673 2016] [lbmethod_heartbeat:notice] [pid 2777] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:29:09.749667 2016] [mpm_prefork:notice] [pid 2777] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:29:09.749711 2016] [core:notice] [pid 2777] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:41:20.200324 2016] [mpm_prefork:notice] [pid 2777] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:41:21.288900 2016] [core:notice] [pid 2844] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:41:21.290694 2016] [suexec:notice] [pid 2844] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:41:21.312211 2016] [auth_digest:notice] [pid 2844] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:41:21.314058 2016] [lbmethod_heartbeat:notice] [pid 2844] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:41:21.317902 2016] [mpm_prefork:notice] [pid 2844] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:41:21.317947 2016] [core:notice] [pid 2844] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:43:52.926555 2016] [mpm_prefork:notice] [pid 2844] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:43:54.008741 2016] [core:notice] [pid 2878] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:43:54.010505 2016] [suexec:notice] [pid 2878] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:43:54.033760 2016] [auth_digest:notice] [pid 2878] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:43:54.035277 2016] [lbmethod_heartbeat:notice] [pid 2878] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:43:54.039210 2016] [mpm_prefork:notice] [pid 2878] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:43:54.039272 2016] [core:notice] [pid 2878] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:48:47.304647 2016] [mpm_prefork:notice] [pid 2878] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:48:48.383755 2016] [core:notice] [pid 2918] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:48:48.385513 2016] [suexec:notice] [pid 2918] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:48:48.406761 2016] [auth_digest:notice] [pid 2918] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:48:48.408276 2016] [lbmethod_heartbeat:notice] [pid 2918] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:48:48.411970 2016] [mpm_prefork:notice] [pid 2918] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:48:48.412010 2016] [core:notice] [pid 2918] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:53:56.820601 2016] [mpm_prefork:notice] [pid 2918] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:53:57.905032 2016] [core:notice] [pid 2952] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:53:57.906958 2016] [suexec:notice] [pid 2952] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:53:57.931535 2016] [auth_digest:notice] [pid 2952] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:53:57.933078 2016] [lbmethod_heartbeat:notice] [pid 2952] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:53:57.945615 2016] [mpm_prefork:notice] [pid 2952] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:53:57.945681 2016] [core:notice] [pid 2952] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:54:28.338850 2016] [mpm_prefork:notice] [pid 2952] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:54:29.418251 2016] [core:notice] [pid 2977] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:54:29.419940 2016] [suexec:notice] [pid 2977] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:54:29.442748 2016] [auth_digest:notice] [pid 2977] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:54:29.444217 2016] [lbmethod_heartbeat:notice] [pid 2977] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:54:29.455641 2016] [mpm_prefork:notice] [pid 2977] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:54:29.455696 2016] [core:notice] [pid 2977] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:58:19.055050 2016] [mpm_prefork:notice] [pid 2977] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:58:21.948277 2016] [core:notice] [pid 3038] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:58:21.950118 2016] [suexec:notice] [pid 3038] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:58:21.971905 2016] [auth_digest:notice] [pid 3038] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:58:21.973404 2016] [lbmethod_heartbeat:notice] [pid 3038] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:58:21.977367 2016] [mpm_prefork:notice] [pid 3038] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:58:21.977444 2016] [core:notice] [pid 3038] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 19:59:08.022681 2016] [mpm_prefork:notice] [pid 3038] AH00170: caught SIGWINCH, shutting down gracefully
+[Tue Aug 30 19:59:09.102171 2016] [core:notice] [pid 3056] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Tue Aug 30 19:59:09.103878 2016] [suexec:notice] [pid 3056] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Tue Aug 30 19:59:09.126243 2016] [auth_digest:notice] [pid 3056] AH01757: generating secret for digest authentication ...
+[Tue Aug 30 19:59:09.127796 2016] [lbmethod_heartbeat:notice] [pid 3056] AH02282: No slotmem from mod_heartmonitor
+[Tue Aug 30 19:59:09.131565 2016] [mpm_prefork:notice] [pid 3056] AH00163: Apache/2.4.6 (CentOS) configured -- resuming normal operations
+[Tue Aug 30 19:59:09.131614 2016] [core:notice] [pid 3056] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Tue Aug 30 20:00:18.799199 2016] [autoindex:error] [pid 3060] [client 10.224.47.27:54628] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Tue Aug 30 20:00:19.093911 2016] [autoindex:error] [pid 3057] [client 10.224.47.27:54633] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Tue Aug 30 20:00:22.591579 2016] [autoindex:error] [pid 3061] [client 10.224.47.27:54630] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Tue Aug 30 20:00:23.030963 2016] [autoindex:error] [pid 3058] [client 10.224.47.27:54634] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Tue Aug 30 20:00:23.215011 2016] [autoindex:error] [pid 3061] [client 10.224.47.27:54630] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Tue Aug 30 20:03:35.237814 2016] [autoindex:error] [pid 3126] [client 10.224.47.27:54648] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Tue Aug 30 20:03:35.885461 2016] [autoindex:error] [pid 3127] [client 10.224.47.27:54650] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Tue Aug 30 20:03:36.285061 2016] [autoindex:error] [pid 3127] [client 10.224.47.27:54650] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 17:36:06.364764 2016] [autoindex:error] [pid 3058] [client 10.224.47.27:61718] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 18:14:22.414470 2016] [mpm_prefork:notice] [pid 3056] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 18:14:23.526107 2016] [core:notice] [pid 10231] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 18:14:23.528096 2016] [suexec:notice] [pid 10231] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 18:14:23.558123 2016] [auth_digest:notice] [pid 10231] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 18:14:23.560196 2016] [lbmethod_heartbeat:notice] [pid 10231] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 18:14:23.564682 2016] [mpm_prefork:notice] [pid 10231] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/4.5.5 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 18:14:23.564736 2016] [core:notice] [pid 10231] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 20:32:22.969531 2016] [mpm_prefork:notice] [pid 10231] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 20:32:24.066927 2016] [core:notice] [pid 10465] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 20:32:24.068797 2016] [suexec:notice] [pid 10465] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 20:32:24.097414 2016] [auth_digest:notice] [pid 10465] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 20:32:24.098992 2016] [lbmethod_heartbeat:notice] [pid 10465] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 20:32:24.102926 2016] [mpm_prefork:notice] [pid 10465] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/4.5.5 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 20:32:24.102972 2016] [core:notice] [pid 10465] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 20:32:27.788789 2016] [core:error] [pid 10470] (13)Permission denied: [client 10.224.47.27:50735] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 20:32:56.597167 2016] [core:error] [pid 10470] (13)Permission denied: [client 10.224.47.27:50749] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 20:33:05.021953 2016] [mpm_prefork:notice] [pid 10465] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 20:33:06.108081 2016] [core:notice] [pid 10494] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 20:33:06.109739 2016] [suexec:notice] [pid 10494] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 20:33:06.138051 2016] [auth_digest:notice] [pid 10494] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 20:33:06.139574 2016] [lbmethod_heartbeat:notice] [pid 10494] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 20:33:06.143448 2016] [mpm_prefork:notice] [pid 10494] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/4.5.5 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 20:33:06.143493 2016] [core:notice] [pid 10494] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 20:33:07.276955 2016] [autoindex:error] [pid 10496] [client 10.224.47.27:50761] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 20:33:08.012090 2016] [autoindex:error] [pid 10496] [client 10.224.47.27:50761] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 20:35:56.862441 2016] [mpm_prefork:notice] [pid 10494] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 20:35:57.960901 2016] [core:notice] [pid 10546] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 20:35:57.962620 2016] [suexec:notice] [pid 10546] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 20:35:57.991452 2016] [so:warn] [pid 10546] AH01574: module wsgi_module is already loaded, skipping
+[Wed Aug 31 20:35:57.992701 2016] [auth_digest:notice] [pid 10546] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 20:35:57.994349 2016] [lbmethod_heartbeat:notice] [pid 10546] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 20:35:57.998730 2016] [mpm_prefork:notice] [pid 10546] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/3.4 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 20:35:57.998784 2016] [core:notice] [pid 10546] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 20:36:00.253160 2016] [autoindex:error] [pid 10548] [client 10.224.47.27:50823] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 20:36:00.682396 2016] [autoindex:error] [pid 10549] [client 10.224.47.27:50830] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 20:36:00.858069 2016] [autoindex:error] [pid 10548] [client 10.224.47.27:50823] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:30:18.236249 2016] [autoindex:error] [pid 10557] [client 10.224.47.27:55145] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:12.296964 2016] [autoindex:error] [pid 10549] [client 10.224.47.27:55229] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:12.782133 2016] [autoindex:error] [pid 10553] [client 10.224.47.27:55235] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:13.054474 2016] [autoindex:error] [pid 10549] [client 10.224.47.27:55229] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:13.206676 2016] [autoindex:error] [pid 10551] [client 10.224.47.27:55232] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:44.040241 2016] [autoindex:error] [pid 10556] [client 10.224.47.27:55241] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:44.526153 2016] [autoindex:error] [pid 10547] [client 10.224.47.27:55247] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:44.718868 2016] [autoindex:error] [pid 10558] [client 10.224.47.27:55243] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:44.854285 2016] [autoindex:error] [pid 10558] [client 10.224.47.27:55243] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:34:44.998424 2016] [autoindex:error] [pid 10556] [client 10.224.47.27:55241] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Aug 31 21:35:12.664312 2016] [mpm_prefork:notice] [pid 10546] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 21:35:13.766356 2016] [core:notice] [pid 10777] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 21:35:13.768277 2016] [suexec:notice] [pid 10777] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 21:35:13.796588 2016] [auth_digest:notice] [pid 10777] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 21:35:13.798208 2016] [lbmethod_heartbeat:notice] [pid 10777] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 21:35:13.838441 2016] [mpm_prefork:notice] [pid 10777] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/3.4 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 21:35:13.838494 2016] [core:notice] [pid 10777] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 21:35:14.698621 2016] [core:error] [pid 10778] (13)Permission denied: [client 10.224.47.27:55253] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:35:15.166578 2016] [core:error] [pid 10778] (13)Permission denied: [client 10.224.47.27:55253] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:35:15.350317 2016] [core:error] [pid 10778] (13)Permission denied: [client 10.224.47.27:55253] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:35:15.494245 2016] [core:error] [pid 10778] (13)Permission denied: [client 10.224.47.27:55253] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:35:15.654941 2016] [core:error] [pid 10778] (13)Permission denied: [client 10.224.47.27:55253] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:20.596797 2016] [mpm_prefork:notice] [pid 10777] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 21:37:21.699024 2016] [core:notice] [pid 10808] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 21:37:21.700893 2016] [suexec:notice] [pid 10808] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 21:37:21.732261 2016] [auth_digest:notice] [pid 10808] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 21:37:21.733849 2016] [lbmethod_heartbeat:notice] [pid 10808] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 21:37:21.773673 2016] [mpm_prefork:notice] [pid 10808] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/3.4 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 21:37:21.773733 2016] [core:notice] [pid 10808] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 21:37:23.145698 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:23.542344 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:23.710453 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:23.886457 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.222336 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.722053 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.755612 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.788791 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.821104 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.854184 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.887189 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.920239 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.953325 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:24.986123 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.019214 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.051824 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.084815 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.117786 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.150918 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.183772 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.217089 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.249821 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.282838 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.315913 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.349191 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.381787 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.415457 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.448135 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.481149 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.514084 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.547216 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.579873 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.613475 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.645904 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:25.974312 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:26.150326 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:37:26.326389 2016] [core:error] [pid 10810] (13)Permission denied: [client 10.224.47.27:55266] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:10.684081 2016] [mpm_prefork:notice] [pid 10808] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 21:44:11.776688 2016] [core:notice] [pid 10872] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 21:44:11.778530 2016] [suexec:notice] [pid 10872] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 21:44:11.806866 2016] [auth_digest:notice] [pid 10872] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 21:44:11.808587 2016] [lbmethod_heartbeat:notice] [pid 10872] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 21:44:11.813060 2016] [mpm_prefork:notice] [pid 10872] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/3.4 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 21:44:11.813104 2016] [core:notice] [pid 10872] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 21:44:14.221105 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:14.650940 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:15.018885 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:15.211004 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:15.378767 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:15.530909 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:15.682762 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:15.842743 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:44:15.978789 2016] [core:error] [pid 10873] (13)Permission denied: [client 10.224.47.27:55303] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:46:16.939533 2016] [mpm_prefork:notice] [pid 10872] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 21:48:33.088203 2016] [core:notice] [pid 10946] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 21:48:33.090232 2016] [suexec:notice] [pid 10946] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 21:48:33.118398 2016] [auth_digest:notice] [pid 10946] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 21:48:33.120146 2016] [lbmethod_heartbeat:notice] [pid 10946] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 21:48:33.125836 2016] [mpm_prefork:notice] [pid 10946] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/3.4 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 21:48:33.125887 2016] [core:notice] [pid 10946] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 21:48:35.746185 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:36.119996 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:36.304032 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:36.472320 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:36.632203 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:36.976060 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:37.160485 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:38.040120 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:38.280217 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:38.472095 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:48:38.658581 2016] [core:error] [pid 10950] (13)Permission denied: [client 10.224.47.27:55352] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:44.224786 2016] [mpm_prefork:notice] [pid 10946] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 21:52:45.318492 2016] [core:notice] [pid 10983] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 21:52:45.320276 2016] [suexec:notice] [pid 10983] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 21:52:45.348531 2016] [auth_digest:notice] [pid 10983] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 21:52:45.350243 2016] [lbmethod_heartbeat:notice] [pid 10983] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 21:52:45.354664 2016] [mpm_prefork:notice] [pid 10983] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/3.4 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 21:52:45.354722 2016] [core:notice] [pid 10983] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 21:52:47.055199 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:47.453810 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:47.661065 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:47.813317 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:47.965166 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:48.117497 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:48.261545 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:48.429443 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:48.581400 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.080646 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.114028 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.146969 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.179745 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.213141 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.246697 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.278447 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.311539 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.344496 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.377465 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.410691 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.443278 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.476258 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.509394 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:52:49.542103 2016] [core:error] [pid 10986] (13)Permission denied: [client 10.224.47.27:55364] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:53:38.515087 2016] [mpm_prefork:notice] [pid 10983] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Aug 31 21:53:39.600158 2016] [core:notice] [pid 11010] SELinux policy enabled; httpd running as context system_u:system_r:httpd_t:s0
+[Wed Aug 31 21:53:39.601960 2016] [suexec:notice] [pid 11010] AH01232: suEXEC mechanism enabled (wrapper: /usr/sbin/suexec)
+[Wed Aug 31 21:53:39.630147 2016] [auth_digest:notice] [pid 11010] AH01757: generating secret for digest authentication ...
+[Wed Aug 31 21:53:39.631629 2016] [lbmethod_heartbeat:notice] [pid 11010] AH02282: No slotmem from mod_heartmonitor
+[Wed Aug 31 21:53:39.676902 2016] [mpm_prefork:notice] [pid 11010] AH00163: Apache/2.4.6 (CentOS) mod_wsgi/3.4 Python/2.7.5 configured -- resuming normal operations
+[Wed Aug 31 21:53:39.676955 2016] [core:notice] [pid 11010] AH00094: Command line: '/usr/sbin/httpd -D FOREGROUND'
+[Wed Aug 31 21:53:41.349891 2016] [core:error] [pid 11013] (13)Permission denied: [client 10.224.47.27:55438] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:53:42.021060 2016] [core:error] [pid 11013] (13)Permission denied: [client 10.224.47.27:55438] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:53:42.396793 2016] [core:error] [pid 11013] (13)Permission denied: [client 10.224.47.27:55438] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path
+[Wed Aug 31 21:53:42.556820 2016] [core:error] [pid 11013] (13)Permission denied: [client 10.224.47.27:55438] AH00035: access to / denied (filesystem path '/home/jintao/ADDB') because search permissions are missing on a component of the path

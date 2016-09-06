@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h2>Volcano plot of {{ dataset }} </h2>
+	<div id="volcano"></div>
+
+	<div id="volcano-summary">
+		<h3>Differentially expressed molecule (DEM) identification</h3>
+		<p>Criteria:</p>
+		<p>&nbsp;&nbsp;&nbsp;- Absolute fold change > 3</p>
+		<p>&nbsp;&nbsp;&nbsp;- Limma p-value < 0.05</p>
+		<p>In total, there are <span style="font-weight:700">{{ deg_count }}</span> DEMs identified among <span style="font-weight:700">{{ molecule_count }}</span> molecules </p>
+	</div>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% include 'partials/_volcano_plot.js' %}
+    </script>
+{% endblock %}

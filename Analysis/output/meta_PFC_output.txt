@@ -1,0 +1,5 @@
+nohup: ignoring input
+meta
+None
+Stat collection to do meta-analysis: RNA_brain_region-PFC_AD-vs-Control
+Meta-analysis finished!

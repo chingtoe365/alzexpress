@@ -1,0 +1,33 @@
+nohup: ignoring input
+sep
+['GSE48350']
+Datasets to be calculated: ['GSE48350']
+Calculating stats of dataset GSE48350 ...
+Warning: Annotation missing for 54675 probes
+Variables prepared
+Meta info of this datset
+Data type : RNA
+Tissue : brain
+Probe & symbol count : 0
+To calculate category groups: [{'region': u'HIP'}, {'region': u'POCG'}, {'region': u'SFG'}, {'region': u'EC'}, {'region': u'Error in identifying region'}]
+Processing region in the HIP group
+Sample count: 43
+Samples in this category group don't include two conditions!
+disease state list [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Processing region in the POCG group
+Sample count: 43
+Samples in this category group don't include two conditions!
+disease state list [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Processing region in the SFG group
+Sample count: 48
+Samples in this category group don't include two conditions!
+disease state list [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Processing region in the EC group
+Sample count: 39
+Samples in this category group don't include two conditions!
+disease state list [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Processing region in the Error in identifying region group
+Sample count: 80
+Samples in this category group don't include two conditions!
+disease state list [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+Separate datasets calculation finished!

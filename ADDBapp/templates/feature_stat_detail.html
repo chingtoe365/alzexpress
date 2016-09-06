@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+	
+	<h2>{{ dataset_name }}</h2>
+	<table class="table">
+		<thead>
+	    <tr>
+	        <th>Feature</th>
+	        <th>Fold change</th>
+	        <th>Limma z score</th>
+	        <th>Limma p value</th>
+	        <th>T-test z score</th>
+	        <th>T-test p value</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+    		{% for probe in test_stat %}
+			<tr>
+				<td>{{ probe.symb }}</td>
+				<td>{{ probe.fc|floatformat:"-3" }}</td>
+				<td>{{ probe.lt|floatformat:"-3" }}</td>
+				<td>{{ probe.lp|floatformat:"-3" }}</td>
+				<td>{{ probe.tt|floatformat:"-3" }}</td>
+				<td>{{ probe.tp|floatformat:"-3" }}</td>
+
+			</tr>
+    		{% endfor %}
+	    	
+	    </tbody>
+		
+	</table>
+
+	<div id="heatmap"></div>			
+	<div id="stripchart"></div>			
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+</style>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script>
+        {% include 'partials/_expression_heatmap.js' %}
+        {% include 'partials/_expression_stripchart.js' %}
+    </script>
+
+{% endblock %}

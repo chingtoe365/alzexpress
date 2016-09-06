@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p>Make some queries from the database</p>
+	<div>
+<!-- 		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" value="Submit Query">
+		</form> -->
+		<script type="text/javascript">
+			
+			$(document).ready(function(){
+				$('#add-another').click(function(){
+					extra_field_count = $('input[name=extra_field_count]').val();
+					// console.log(extra_field_count);
+					extra_field_count++;
+					// console.log(extra_field_count);
+					$('input[name=extra_field_count]').val(extra_field_count);
+					// console.log($('input[name=extra_field_count]').val());
+					url = 'http://' + window.location.hostname + ":" + window.location.port + window.location.pathname + "?extra_field_count=" + extra_field_count;
+					// console.log(url);
+					window.location.href = url;
+				});
+				$('#delete-last').click(function(){
+					extra_field_count = $('input[name=extra_field_count]').val();
+					// console.log(extra_field_count);
+					extra_field_count--;
+					// console.log(extra_field_count);
+					$('input[name=extra_field_count]').val(extra_field_count);
+					// console.log($('input[name=extra_field_count]').val());
+					url = 'http://' + window.location.hostname + ":" + window.location.port + window.location.pathname + "?extra_field_count=" + extra_field_count;
+					// console.log(url);
+					window.location.href = url;
+				});
+				$('#feature-query').click(function(){
+					$('#feature-query-form').removeClass('hidden');
+				});		
+			})
+		</script>
+		<form method="post" enctype="multipart/form-data">
+			<div id="forms">
+				{% csrf_token %}
+			    {{ form }}
+			</div>
+			<button type="button" id="add-another">add another</button>
+			<button type="button" id="delete-last">delete last</button>
+			<input type="submit" value="Submit Query"/>
+		</form>
+	</div>
+	<div>
+		<h2>Filtered Samples</h2>
+		<!-- {{ result|length }} -->
+		{% if result|length != 0 %}
+			<button id="feature-query" data-rel={{ query }}>Do some feature queries</button>
+
+		{% endif %}
+		<form id="feature-query-form" class="hidden" method="post" enctype="multipart/form-data" action="{% url 'addb_featureQuery' %}">
+			{% csrf_token %}
+			<input type="hidden" id="sample-query" name="sample-query" value="{{ query }}"/>
+			<textarea id="input-genes" type="text" name="input-genes"></textarea>
+
+			<input type="submit" />
+		</form>
+		<table class="table-striped table-hover table-responsive">
+			<thead>
+				{% for fieldName in result.0 %}
+					<th>{{ fieldName }}</th>
+				{% endfor %}
+			</thead>
+		{% for sample in result %}
+			<tr>
+				<!-- <td>{{ sample.gender.0 }}</td> -->
+				{% for field in sample.values %}
+					<td>{{ field.0 }}</td>
+				{% endfor %}
+			</tr>	
+		{% endfor %}	
+		</table>
+		<!-- {{ result }} -->
+
+	</div>
+{% endblock %}
