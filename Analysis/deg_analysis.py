@@ -351,7 +351,7 @@ if __name__ == "__main__" :
 						metavar='CNL',
 						type=str)
 
-	parser.add_argument('--debug', dest='debug', action='debug_true')
+	parser.add_argument('--debug', dest='debug', action='store_true')
 	parser.set_defaults(debug=False)	
 
 	parser.add_argument('--store', dest='store', action='store_true')
