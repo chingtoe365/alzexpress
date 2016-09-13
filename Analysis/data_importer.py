@@ -61,7 +61,7 @@ if __name__ == '__main__' :
 						# required=True,
 						type=str)	
 
-	parser.add_argument('--debug', dest='debug', action='debug_true')
+	parser.add_argument('--debug', dest='debug', action='store_true')
 	parser.set_defaults(debug=False)	
 	
 	args = parser.parse_args()
