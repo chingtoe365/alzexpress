@@ -33,6 +33,10 @@ def import_annotation(file_path, platform_id, annotation_client, debug=True):
 		txtfile_string = txtfile.read()
 		annotation_json = json.loads(txtfile_string)
 		for entrez_gene_id in annotation_json.keys():
+			# if debug:
+			# 	print "Entrez gene id: %s" % (entrez_gene_id, )
+			# 	print annotation_json[entrez_gene_id]
+				# exit()
 			probe_array = annotation_json[entrez_gene_id]['probe_ids']
 			symbol = annotation_json[entrez_gene_id]['symbol']
 			# Update corresponding record
@@ -95,7 +99,7 @@ if __name__ == '__main__' :
 				platform_id = args.platform_id
 				print "Processing: %s" % (args.file_name, )
 				# import_file(file_path, platform_id, import_client)
-				import_annotation(file_path, platform_id, annotation_client, debug)
+				import_annotation(file_path, platform_id, annotation_client, args.debug)
 		else :
 			print "Processing: %s" % (args.file_name, )
 			import_file(file_path, sample_client)
