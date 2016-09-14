@@ -94,7 +94,7 @@ def calculate_and_store_statistic_of_given_table(table, disease_state, debug=Fal
 
 	return limma_result_dict, t_result_dict, fold_change
 
-def store_result(data_type, tissue, category, region_name, sample_count, disease_state_list, probe_id_list, feature_probe_symbol_dict, limma_result_dict, t_result_dict, fold_change, expression_table, store=False):
+def store_result(dataset, data_type, tissue, category, region_name, sample_count, disease_state_list, probe_id_list, feature_probe_symbol_dict, limma_result_dict, t_result_dict, fold_change, expression_table, store=False):
 	collection_name = "%s_%s_%s-%s_%s-vs-%s" % (data_type, 
 												tissue, 
 												category.keys()[0], 
@@ -253,7 +253,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			if category.values()[0] == "SFG":
 				# Special case for SFG as it's in PFC as well!
 				for region_name in ["PFC", "SFG", ]:
-					store_result(data_type, 
+					store_result(dataset,
+								data_type, 
 								tissue, 
 								category, 
 								region_name, 
@@ -267,7 +268,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 								expression_table, 
 								store=False)
 			# Normal regions
-			store_result(data_type, 
+			store_result(dataset,
+						data_type, 
 						tissue, 
 						category, 
 						region_name, 
