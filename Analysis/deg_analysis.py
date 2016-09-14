@@ -94,6 +94,32 @@ def calculate_and_store_statistic_of_given_table(table, disease_state, debug=Fal
 
 	return limma_result_dict, t_result_dict, fold_change
 
+def store_result(data_type, tissue, category, region_name, sample_count, disease_state_list, probe_id_list, feature_probe_symbol_dict, limma_result_dict, t_result_dict, fold_change, expression_table, store=False):
+	collection_name = "%s_%s_%s-%s_%s-vs-%s" % (data_type, 
+												tissue, 
+												category.keys()[0], 
+												region_name,
+												"AD", # change when more comparison added
+												"Control") # change when more comparison added
+	print "Stats will be stored in collection name: %s" % (collection_name)
+
+	### First update meta infor for each category group in teststat
+	if store:
+		sample_count = {dataset : sample_count}
+		test_stat_client.update_meta_sample_count(collection_name, sample_count)				
+		disease_state = {'AD' : 1, 'CNL' : 0, dataset : disease_state_list}
+		test_stat_client.update_meta_disease_state(collection_name, disease_state)
+
+	prepare_stat_record_and_insert(dataset,
+									collection_name,
+									sample_count,
+									probe_id_list,
+									feature_probe_symbol_dict,
+									limma_result_dict,
+									t_result_dict, 
+									fold_change,
+									expression_table,
+									store)	
 
 def variable_prepare(dataset, sample_client, annotation_client):
 	"""
@@ -225,35 +251,37 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			region_name = category.values()[0]
 			
 			if category.values()[0] == "SFG":
+				# Special case for SFG as it's in PFC as well!
 				for region_name in ["PFC", "SFG", ]:
-
-					collection_name = "%s_%s_%s-%s_%s-vs-%s" % (data_type, 
-																tissue, 
-																category.keys()[0], 
-																region_name,
-																"AD", # change when more comparison added
-																"Control") # change when more comparison added
-					print "Stats will be stored in collection name: %s" % (collection_name)
+					store_result(data_type, 
+								tissue, 
+								category, 
+								region_name, 
+								sample_count, 
+								disease_state_list, 
+								probe_id_list, 
+								feature_probe_symbol_dict, 
+								limma_result_dict, 
+								t_result_dict, 
+								fold_change, 
+								expression_table, 
+								store=False)
+			# Normal regions
+			store_result(data_type, 
+						tissue, 
+						category, 
+						region_name, 
+						sample_count, 
+						disease_state_list, 
+						probe_id_list, 
+						feature_probe_symbol_dict, 
+						limma_result_dict, 
+						t_result_dict, 
+						fold_change, 
+						expression_table, 
+						store=False)
 				
-					### First update meta infor for each category group in teststat
-					if store:
-						sample_count = {dataset : sample_count}
-						test_stat_client.update_meta_sample_count(collection_name, sample_count)				
-						disease_state = {'AD' : 1, 'CNL' : 0, dataset : disease_state_list}
-						test_stat_client.update_meta_disease_state(collection_name, disease_state)
-
-					prepare_stat_record_and_insert(dataset,
-													collection_name,
-													sample_count,
-													probe_id_list,
-													feature_probe_symbol_dict,
-													limma_result_dict,
-													t_result_dict, 
-													fold_change,
-													expression_table,
-													store)
-				
-				print "Finished calculation of %s in the %s group" % (category.keys()[0], category.values()[0], )
+			print "Finished calculation of %s in the %s group" % (category.keys()[0], category.values()[0], )
 
 def execute_meta_analysis(collection_name, test_stat_client, meta_stat_client, debug=False, store=True):
 	
