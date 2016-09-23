@@ -1,3 +1,5 @@
+/* === basics === */
+
 body{
 	font-family: 'Times';
 }
@@ -15,6 +17,21 @@ a.obvious{
 span.first-letter{
 	font-size: 25px;
 }
+
+.string-link{
+	position: absolute;
+	/*top:-15px;*/
+	right: 0;
+	z-index: 100;
+	width: 20px;height: 20px;
+	background: #cccccc url('img/string_logo_mini.png') no-repeat;
+	color:white;
+}
+.feature-annotation{
+	display: block;
+	position: relative;
+}
+/* === basics === */
 .journal{
 	font-style: italic;
 }
@@ -83,3 +100,4 @@ span.first-letter{
 	font-size: 17px;
 	color:#000000;
 }
+

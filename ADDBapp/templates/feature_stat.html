@@ -44,8 +44,18 @@
 	    </thead>
 	    <tbody>
     		{% for probe in content %}
+
 			<tr>
-				<td>{{ probe.symb }}</td>
+				<td class="feature-annotation">
+					{% with string_link="http://version_10.string-db.org/cgi/network.pl?all_channels_on=1&block_structure_pics_in_bubbles=0&direct_neighbor=1&hide_disconnected_nodes=0&hide_node_labels=0&network_display_mode=svg&network_flavor=evidence&targetmode=proteins&identifier="|add:probe.string_id %}
+					<a class="string-link" href="{{ string_link }}"></a>
+					{% endwith %}
+					{% with gene_link="http://www.ncbi.nlm.nih.gov/gene/"|add:probe.entrez_gene_id %}
+					<a href="{{ gene_link }}">
+						{{ probe.symb }}
+					</a>
+					{% endwith %}
+				</td>
 				<td>{{ probe.fc|floatformat:"-3" }}</td>
 				<td>{{ probe.lt|floatformat:"-3" }}</td>
 				<td>{{ probe.lp|floatformat:"-3" }}</td>
@@ -63,8 +73,12 @@
 	</div>
 	{% endfor %}
 	{% with meta_link="/meta/?datatype="|add:datatype|add:"&tissue="|add:tissue|add:"&category="|add:category|add:"&group="|add:group|add:"&comparison="|add:comparison|add:"&features="|add:features %}
-	<a class="obvious" href="{{ meta_link }}">See Meta-analysis result</a>
+	<a class="obvious" href="{{ meta_link }}">See Meta-analysis result</a> <br>
 	{% endwith %}
+	{% with string_group_link="http://version_10.string-db.org/cgi/network.pl?all_channels_on=1&block_structure_pics_in_bubbles=0&direct_neighbor=1&hide_disconnected_nodes=0&hide_node_labels=0&limit=0&network_display_mode=svg&network_flavor=evidence&targetmode=proteins&identifiers="|add:string_url_id_component %}
+	<a class="obvious" href="{{ string_group_link }}">See STRING network for quried features</a>
+	{% endwith %}
+
 
 {% endblock %}
 

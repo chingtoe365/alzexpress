@@ -13,7 +13,10 @@ from .forms import featureSelectionForm
 from graph_data import generate_series_from_list, generate_scatterplot_series, \
 						generate_volcanoplot_series
 
-from url_data import generate_mulivariable_series_from_list
+from url_data import generate_mulivariable_series_from_list, \
+					from_symbol_to_entrez_gene_id, \
+					from_single_symbol_to_string_id, \
+					generate_string_id_get_query_from_list
 
 from parameters import ALL_PLATFORMS, ALL_REGIONS
 
@@ -200,11 +203,20 @@ def query(request):
 				elif way_to_choose_probe == "t test p value" :
 					test_stat_df = filtered_duplicate_by(test_stat_df, 'tp')
 
+				if test_stat_df.empty:
+					all_datasets.remove(dataset)
+					continue
 				# Split dataframe for stat table display and graph display
 				stat_table = test_stat_df.drop(['eval', 'dsl'], axis=1)
+				# import pdb; pdb.set_trace()
+				stat_table['entrez_gene_id'] = stat_table.apply(from_symbol_to_entrez_gene_id, axis=1)
+				stat_table['string_id'] = from_single_symbol_to_string_id(stat_table['symb'])
 				
+				# import pdb; pdb.set_trace()
+
 				stat_table_output = stat_table.to_dict(outtype='records')
 
+				# import pdb; pdb.set_trace()
 				test_stat_output_dict.update({dataset : stat_table_output})
 
 
@@ -219,7 +231,8 @@ def query(request):
 							'category' : request.POST["category"],
 							'group' : request.POST["group"],
 							'comparison' : request.POST["comparison"],
-							'features' : generate_mulivariable_series_from_list(feature_symbols_in_interest)
+							'features' : generate_mulivariable_series_from_list(feature_symbols_in_interest),
+							'string_url_id_component' : generate_string_id_get_query_from_list(stat_table['string_id'])
 						})
 	else:		
 		return render(request, 'query.html', {
@@ -283,6 +296,9 @@ def detail(request):
 	stat_table = test_stat_df.drop(['eval', 'dsl'], axis=1)
 	stat_graph_exprs = test_stat_df[['symb', 'eval']]
 	stat_graph_ds = disease_state_list[dataset]
+
+	# import pdb; pdb.set_trace()
+	stat_table['entrez_gene_id'] = stat_table.apply(from_symbol_to_entrez_gene_id, axis=1)			
 
 	ds_1_count = sum(stat_graph_ds)
 	ds_0_count = len(stat_graph_ds) - sum(stat_graph_ds)
@@ -394,9 +410,14 @@ def meta(request):
 	filt_ind = records['symb'].isin(feature_symbols_in_interest)
 	records_queried = records[filt_ind]
 
+	records_queried['entrez_gene_id'] = records_queried.apply(from_symbol_to_entrez_gene_id, axis=1)
+				
+
 	# Select top 10 by meta-p-value
 	records_top_10 = records.sort('pval', ascending=True).iloc[0:9, ]
 
+	records_top_10['entrez_gene_id'] = records_top_10.apply(from_symbol_to_entrez_gene_id, axis=1)
+	
 	# Get meta info for this collection
 	meta_df = pd.DataFrame(record_sample_count, index=['sample_count'], columns=record_all_datasets)
 	meta_df = pd.DataFrame.transpose(meta_df)

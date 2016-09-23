@@ -94,36 +94,36 @@ class AnnotationClient():
 		
 		return self.db[data_type].find()
 
-	def get_all_gene_entrez_id_and_symbol(self) :
+	def get_all_gene_entrez_id_and_symbol(self, anno_type) :
 		
-		return self.db['gene'].find({}, {'entrez_gene_id' : 1, 'symbol' : 1, '_id' : 0})
+		return self.db[anno_type].find({}, {'entrez_gene_id' : 1, 'symbol' : 1, '_id' : 0})
 
-	def store_one(self, feature_dict):
+	def store_one(self, anno_type, feature_dict):
 		''' 
 			Insert a single sample into the database
 		'''
 		query = {
 			"entrez_gene_id" : feature_dict['entrez_gene_id']
 		}
-		db_collection = self.db['gene']
+		db_collection = self.db[anno_type]
 		
 		return db_collection.update(query, {'$set' : feature_dict}, upsert=True)
 
-	def get_all_probe_ids_by_platform(self, platform_id):
+	def get_all_probe_ids_by_platform(self, anno_type, platform_id):
 		
-		records = self.db['gene'].find(
+		records = self.db[anno_type].find(
 			{platform_id : {'$exists' : 1}}, 
 			{platform_id : 1, "symbol" : 1, "_id" : 0})
 
 		return records
 
-	def get_record_by_entrez_gene_id(self, entrez_gene_id):
-		return self.db['gene'].find_one({
+	def get_record_by_entrez_gene_id(self, anno_type, entrez_gene_id):
+		return self.db[anno_type].find_one({
 				'entrez_gene_id' : entrez_gene_id
 			})
 
-	def update_record_by_entrez_gene_id(self, entrez_gene_id, platform_id, probe_array, symbol):
-		return self.db['gene'].update({
+	def update_record_by_entrez_gene_id(self, anno_type, entrez_gene_id, platform_id, probe_array, symbol):
+		return self.db[anno_type].update({
 				'entrez_gene_id' : int(entrez_gene_id)
 			}, {
 				'$set' : {

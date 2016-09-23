@@ -68,7 +68,7 @@ def filtered_duplicate_by(df, metric):
 	# probe_df = pd.DataFrame(df.index, columns=['probe'], index=df.index)
 	# df = pd.concat([probe_df, df], axis=1)
 	filtered_df = df.sort(metric, ascending=False).groupby('symb', as_index=False).first()
-	print filtered_df
+	# print filtered_df
 	return filtered_df
 
 

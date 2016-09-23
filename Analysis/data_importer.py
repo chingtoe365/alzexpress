@@ -26,7 +26,7 @@ def import_file(file_path, sample_client, debug=True):
 			sample_client.store_one(input_json[content])
 		print "Import successed!"
 
-def import_annotation(file_path, platform_id, annotation_client, debug=True):
+def import_annotation(file_path, platform_id, anno_type, annotation_client, debug=True):
 	with open(file_path, 'rb') as txtfile:
 		if debug:
 			print "Full file path: %s" % (file_path)
@@ -40,7 +40,7 @@ def import_annotation(file_path, platform_id, annotation_client, debug=True):
 			probe_array = annotation_json[entrez_gene_id]['probe_ids']
 			symbol = annotation_json[entrez_gene_id]['symbol']
 			# Update corresponding record
-			annotation_client.update_record_by_entrez_gene_id(entrez_gene_id, platform_id, probe_array, symbol)
+			annotation_client.update_record_by_entrez_gene_id(anno_type, entrez_gene_id, platform_id, probe_array, symbol)
 
 
 if __name__ == '__main__' :
@@ -49,7 +49,7 @@ if __name__ == '__main__' :
 	parser.add_argument('--data-type',
 						help='The data type of imported data. Either gene or sample',
 						dest='data_type',
-						metavar='gene/sample',
+						metavar='annotation/sample',
 						required=True,
 						type=str)
 	parser.add_argument('--file-name',
@@ -57,7 +57,15 @@ if __name__ == '__main__' :
 						dest='file_name',
 						metavar='Comma separated file',
 						required=True,
+						type=str)
+	
+	parser.add_argument('--annotation-type',
+						help='Type of annotation',
+						dest='anno_type',
+						metavar='RNA/protein/microRNA/dna_methylation',
+						required=True,
 						type=str)	
+	
 	parser.add_argument('--platform-id',
 						help='The platform ID in GEO for the annotation',
 						dest='platform_id',
@@ -88,18 +96,19 @@ if __name__ == '__main__' :
 	if args.file_name is None or args.data_type is None:
 		parser.print_help()
 	else:
-		if args.data_type not in ['gene', 'sample']:
+		if args.data_type not in ['annotation', 'sample']:
 			print "Wrong data type"
 			parser.print_help()
-		elif args.data_type == 'gene' :
-			if args.platform_id is None:
-				print "Please type input platform ID"
+		elif args.data_type == 'annotation' :
+			if args.platform_id is None or args.anno_type is None:
+				print "Please type input platform ID and annotation type"
 				parser.print_help()
 			else:
 				platform_id = args.platform_id
+				anno_type = args.anno_type
 				print "Processing: %s" % (args.file_name, )
 				# import_file(file_path, platform_id, import_client)
-				import_annotation(file_path, platform_id, annotation_client, args.debug)
+				import_annotation(file_path, platform_id, anno_type, annotation_client, args.debug)
 		else :
 			print "Processing: %s" % (args.file_name, )
 			import_file(file_path, sample_client)

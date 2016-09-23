@@ -124,6 +124,11 @@ class AnnotationClient():
 
 		return records
 
+	def get_entrez_gene_id_from_symbol(self, symbol):
+		return self.db['gene'].find_one({
+				'symbol' : symbol
+			})
+
 class TestStatClient():
 	"""
 	A client to wrap the mongo database for storing test statistics

@@ -67,8 +67,8 @@ def extract_single_from_list_in_dataset_dict(dataset_dict):
 			dataset_dict[key] = dataset_dict[key][0]
 	return dataset_dict
 
-def get_feature_probe_symbol_dict_list(probe_id_list, platform_id, anno_client):
-	all_probe_ids = list(anno_client.get_all_probe_ids_by_platform(platform_id))
+def get_feature_probe_symbol_dict_list(anno_type, probe_id_list, platform_id, anno_client):
+	all_probe_ids = list(anno_client.get_all_probe_ids_by_platform(anno_type, platform_id))
 	
 	# covert probe gene list to easy-handle format
 	all_probe_ids_dict = build_dict(all_probe_ids, platform_id)

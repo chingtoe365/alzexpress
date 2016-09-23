@@ -148,7 +148,7 @@ def variable_prepare(dataset, sample_client, annotation_client):
 	# Get probe id list
 	probe_id_list = sample_client.get_probe_id_list(dataset)
 	# Get corresponding feature symbol list
-	feature_probe_symbol_dict = get_feature_probe_symbol_dict_list(probe_id_list, platform_id, annotation_client)
+	feature_probe_symbol_dict = get_feature_probe_symbol_dict_list(data_type, probe_id_list, platform_id, annotation_client)
 	# feature_probe_symbol_dict = get_feature_probe_symbol_dict_list(probe_id_list, platform_type, annotation_client)
 
 	# Get all category groups
