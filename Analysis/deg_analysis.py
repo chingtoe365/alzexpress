@@ -175,9 +175,9 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 		
 		# If no category found, then it is a full-scale calculation
 
-		if not category:
-				category = {'region' : 'ALL'}
-				
+		if not categories:
+				categories = [{'region' : 'ALL'}]
+
 		# Calculate stats cat by cat
 		for category in categories :
 			if not category:
