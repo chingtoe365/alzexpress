@@ -173,6 +173,11 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			print "Probe & symbol count : %s" % (len(feature_probe_symbol_dict.keys()), )
 			print "To calculate category groups: %s" % (categories, )
 		
+		# If no category found, then it is a full-scale calculation
+
+		if not category:
+				category = {'region' : 'ALL'}
+				
 		# Calculate stats cat by cat
 		for category in categories :
 			if not category:
@@ -254,8 +259,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 				Extension: when more comparison added, name variable should adjust here
 			"""
 			# region_name = category.values()[0]
-			if not category:
-				category = {'region' : 'ALL'}
+
 			
 			if category.keys()[0] == "region":
 				if category.values()[0] == "SFG":
