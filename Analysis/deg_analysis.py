@@ -175,10 +175,15 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 		
 		# Calculate stats cat by cat
 		for category in categories :
-			print "Processing %s in the %s group" % (category.keys()[0], category.values()[0], )
-			
-			# fetch the expression table for each category in the dataset
-			sample_records = sample_client.fetch_sample_records_in_one_category(category, dataset)
+			if not category:
+				# Not any groups of interest in the fields of this dataset, e.g. "region" not recorded in blood samples  
+				print "Processing dataset %s, tissue %s" % (dataset, tissue, )
+				sample_records = sample_client.fetch_sample_records_in_all_cateogies(dataset)
+
+			else:
+				print "Processing %s in the %s group" % (category.keys()[0], category.values()[0], )
+				# fetch the expression table for each category in the dataset
+				sample_records = sample_client.fetch_sample_records_in_one_category(category, dataset)
 			sample_records_list = list(sample_records)
 
 			# count samples
@@ -248,11 +253,30 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			"""
 				Extension: when more comparison added, name variable should adjust here
 			"""
-			region_name = category.values()[0]
+			# region_name = category.values()[0]
+			if not category:
+				category = {'region' : 'ALL'}
 			
-			if category.values()[0] == "SFG":
-				# Special case for SFG as it's in PFC as well!
-				for region_name in ["PFC", "SFG", ]:
+			if category.keys()[0] == "region":
+				if category.values()[0] == "SFG":
+					# Special case for SFG as it's in PFC as well!
+					for region_name in ["PFC", "SFG", ]:
+						store_result(dataset,
+									data_type, 
+									tissue, 
+									category, 
+									region_name, 
+									sample_count, 
+									disease_state_list, 
+									probe_id_list, 
+									feature_probe_symbol_dict, 
+									limma_result_dict, 
+									t_result_dict, 
+									fold_change, 
+									expression_table, 
+									store=False)
+				else:
+					# Normal regions
 					store_result(dataset,
 								data_type, 
 								tissue, 
@@ -267,22 +291,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 								fold_change, 
 								expression_table, 
 								store=False)
-			# Normal regions
-			store_result(dataset,
-						data_type, 
-						tissue, 
-						category, 
-						region_name, 
-						sample_count, 
-						disease_state_list, 
-						probe_id_list, 
-						feature_probe_symbol_dict, 
-						limma_result_dict, 
-						t_result_dict, 
-						fold_change, 
-						expression_table, 
-						store=False)
-				
+
 			print "Finished calculation of %s in the %s group" % (category.keys()[0], category.values()[0], )
 
 def execute_meta_analysis(collection_name, test_stat_client, meta_stat_client, debug=False, store=True):

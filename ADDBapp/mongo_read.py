@@ -68,6 +68,9 @@ class SampleClient():
 				category_list.append({category: value})
 		return category_list
 
+	def fetch_sample_records_in_all_cateogies(self, dataset):
+		return self.db[dataset].find()
+
 	def fetch_sample_records_in_one_category(self, category, dataset):
 		return self.db[dataset].find({category.keys()[0] : category.values()[0]})
 
@@ -116,9 +119,9 @@ class AnnotationClient():
 		
 		return db_collection.update(query, {'$set' : feature_dict}, upsert=True)
 
-	def get_all_probe_ids_by_platform(self, platform):
+	def get_all_probe_ids_by_platform(self, annotation_type, platform):
 		
-		records = self.db['gene'].find(
+		records = self.db[annotation_type].find(
 			{platform : {'$exists' : 1}}, 
 			{platform : 1, "symbol" : 1, "_id" : 0})
 
