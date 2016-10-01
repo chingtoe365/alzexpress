@@ -63,7 +63,7 @@ if __name__ == '__main__' :
 						help='Type of annotation',
 						dest='anno_type',
 						metavar='RNA/protein/microRNA/dna_methylation',
-						required=True,
+						# required=True,
 						type=str)	
 	
 	parser.add_argument('--platform-id',
