@@ -124,7 +124,7 @@ class AnnotationClient():
 
 	def update_record_by_entrez_gene_id(self, anno_type, entrez_gene_id, platform_id, probe_array, symbol):
 		return self.db[anno_type].update({
-				'entrez_gene_id' : int(entrez_gene_id)
+				'entrez_gene_id' : str(entrez_gene_id)
 			}, {
 				'$set' : {
 					platform_id : probe_array,
