@@ -276,6 +276,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 									expression_table, 
 									store=False)
 				else:
+					region_name = category.values()[0]
 					# Normal regions
 					store_result(dataset,
 								data_type, 
