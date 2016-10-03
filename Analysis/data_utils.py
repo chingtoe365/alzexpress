@@ -172,7 +172,7 @@ def get_disease_state_by_sample_records(sample_records, debug=True):
 		elif disease_state == "CNL" : 
 			disease_state.append(0)
 		else:
-			print "Other disease state detected: %s" % (disease_state, )
+			print "Other disease state detected: %s" % (disease_state_str, )
 			disease_state.append(-1)
 			# continue
 	return disease_state
