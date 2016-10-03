@@ -73,7 +73,8 @@ class SampleClient():
 			category.keys()[0] : category.values()[0], 
 			'$or' : [{'disease_state' : 'AD'}, 
 					{'disease_state' : 'CNL'}]
-
+			})
+		
 	def store_one(self, dataset_dict):
 		''' 
 			Insert a single sample into the database
