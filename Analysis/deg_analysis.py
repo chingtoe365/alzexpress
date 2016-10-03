@@ -18,7 +18,7 @@ import progressbar
 import pandas as pd
 import numpy as np
 
-def prepare_stat_record_and_insert(dataset, collection_name, sample_count, probe_id_list, feature_probe_symbol_dict, limma_result_dict, t_result_dict, fold_change, expression_table, store=False):
+def prepare_stat_record_and_insert(dataset, collection_name, sample_count, probe_id_list, feature_probe_symbol_dict, limma_result_dict, t_result_dict, fold_change, expression_table, store=False, debug=False):
 	
 	"""
 		Prepare a record for the insertion into db
@@ -54,6 +54,11 @@ def prepare_stat_record_and_insert(dataset, collection_name, sample_count, probe
 				'fc' : fc,
 				'eval' : evalue
 		}
+
+		if debug : 
+			print new_stat_record
+			# exit()
+
 		if store:
 			test_stat_client.insert_record(collection_name, new_stat_record)
 
@@ -94,7 +99,7 @@ def calculate_and_store_statistic_of_given_table(table, disease_state, debug=Fal
 
 	return limma_result_dict, t_result_dict, fold_change
 
-def store_result(dataset, data_type, tissue, category, region_name, sample_count, disease_state_list, probe_id_list, feature_probe_symbol_dict, limma_result_dict, t_result_dict, fold_change, expression_table, store=False):
+def store_result(dataset, data_type, tissue, category, region_name, sample_count, disease_state_list, probe_id_list, feature_probe_symbol_dict, limma_result_dict, t_result_dict, fold_change, expression_table, store=False, debug=False):
 	collection_name = "%s_%s_%s-%s_%s-vs-%s" % (data_type, 
 												tissue, 
 												category.keys()[0], 
@@ -119,7 +124,8 @@ def store_result(dataset, data_type, tissue, category, region_name, sample_count
 									t_result_dict, 
 									fold_change,
 									expression_table,
-									store)	
+									store, 
+									debug)	
 
 def variable_prepare(dataset, sample_client, annotation_client):
 	"""
@@ -176,7 +182,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 		# If no category found, then it is a full-scale calculation
 
 		if not categories:
-				categories = [{'region' : 'ALL'}]
+			categories = [{'region' : 'ALL'}]
 
 		# Calculate stats cat by cat
 		for category in categories :
@@ -220,7 +226,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 				print "Samples in this category group don't include two conditions!"
 				print "disease state list", disease_state_list
 				# Skip the calculation in this situation
-				continue
+				# continue
 
 			print "Extracting expression table"
 
@@ -251,7 +257,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			
 			# processed_table, refined_gene_symbol_list = expression_table_preprocessing(expression_table, gene_symbol_list, disease_state_list)
 			limma_result_dict, t_result_dict, fold_change = calculate_and_store_statistic_of_given_table(expression_table,  
-																							disease_state_list,
+																										disease_state_list,
 																										debug)
 			print "Statistics calculated"
 			# Store result in database
@@ -278,7 +284,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 									t_result_dict, 
 									fold_change, 
 									expression_table, 
-									store=False)
+									store, 
+									debug)
 				else:
 					region_name = category.values()[0]
 					# Normal regions
@@ -295,7 +302,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 								t_result_dict, 
 								fold_change, 
 								expression_table, 
-								store=False)
+								store,
+								debug)
 
 			print "Finished calculation of %s in the %s group" % (category.keys()[0], category.values()[0], )
 

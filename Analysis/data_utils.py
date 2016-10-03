@@ -169,8 +169,12 @@ def get_disease_state_by_sample_records(sample_records, debug=True):
 		disease_state_str = record["disease_state"]
 		if disease_state_str == "AD":
 			disease_state.append(1)
-		else:
+		elif disease_state == "CNL:
 			disease_state.append(0)
+		else:
+			print "Other disease state detected: %s" % (disease_state, )
+			disease_state.append(-1)
+			# continue
 	return disease_state
 
 def expression_table_preprocessing(table, gene_symbol_list, disease_state_list, remove_duplicate_by="fold_change" ,debug=True):
