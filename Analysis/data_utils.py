@@ -169,7 +169,7 @@ def get_disease_state_by_sample_records(sample_records, debug=True):
 		disease_state_str = record["disease_state"]
 		if disease_state_str == "AD":
 			disease_state.append(1)
-		elif disease_state == "CNL" : 
+		elif disease_state_str == "CNL" : 
 			disease_state.append(0)
 		else:
 			print "Other disease state detected: %s" % (disease_state_str, )
