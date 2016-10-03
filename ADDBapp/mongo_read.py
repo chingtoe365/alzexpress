@@ -75,7 +75,7 @@ class SampleClient():
 		"""
 		### TODO ###
 		# Include other disease state as well
-		return self.db[dataset].find({'$or' : {'disease_state' : 'AD', 'disease_state' : 'CNL'}})
+		return self.db[dataset].find({'$or' : [{'disease_state' : 'AD'}, {'disease_state' : 'CNL'}]})
 
 	def fetch_sample_records_in_one_category(self, category, dataset):
 		"""
@@ -86,8 +86,8 @@ class SampleClient():
 		# Include other disease state as well
 		return self.db[dataset].find({
 			category.keys()[0] : category.values()[0], 
-			'$or' : {'disease_state' : 'AD', 
-					'disease_state' : 'CNL'}
+			'$or' : [{'disease_state' : 'AD'}, 
+					{'disease_state' : 'CNL'}]
 			})
 
 	def store_one(self, dataset_dict):
