@@ -53,12 +53,26 @@ class SampleClient():
 				category_list.append({category: value})
 		return category_list
 
-	def fetch_sample_records_in_one_category(self, category, dataset):
-		return self.db[dataset].find({category.keys()[0] : category.values()[0]}, {'disease_state' : 1, 'expression_value' : 1, 'age' : 1, 'gender' : 1})
-	
-	# def fetch_sample_record_expression_in_one_category(self, category, dataset):
-	# 	return self.db[dataset].find({category.keys()[0] : category.values()[0]}, {'expression_value' : 1, '_id' : 0})
+	def fetch_sample_records_in_all_cateogies(self, dataset):
+		"""
+			Get all sample records in given datasets
+			Would be exclusively AD & CNL at this state 
+		"""
+		### TODO ###
+		# Include other disease state as well
+		return self.db[dataset].find({'$or' : [{'disease_state' : 'AD'}, {'disease_state' : 'CNL'}]})
 
+	def fetch_sample_records_in_one_category(self, category, dataset):
+		"""
+			Get sample records in given datasets for given group
+			Would be exclusively AD & CNL 
+		"""
+		### TODO ###
+		# Include other disease state as well
+		return self.db[dataset].find({
+			category.keys()[0] : category.values()[0], 
+			'$or' : [{'disease_state' : 'AD'}, 
+					{'disease_state' : 'CNL'}]
 
 	def store_one(self, dataset_dict):
 		''' 
