@@ -99,7 +99,7 @@ comparison_choices_list = (
 
 dataType_choices_list = (
 	('RNA', 'RNA'),
-	('Protein', 'Protein'),
+	('protein', 'Protein'),
 )
 
 tissue_choices_list = (
