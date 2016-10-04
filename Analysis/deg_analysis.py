@@ -186,7 +186,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 
 		# Calculate stats cat by cat
 		for category in categories :
-			if not category:
+			if category.keys()[0] == 'region' and category.values()[0] == 'ALL':
 				# Not any groups of interest in the fields of this dataset, e.g. "region" not recorded in blood samples  
 				print "Processing dataset %s, tissue %s" % (dataset, tissue, )
 				sample_records = sample_client.fetch_sample_records_in_all_cateogies(dataset)
