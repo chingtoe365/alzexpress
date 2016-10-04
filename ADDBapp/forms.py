@@ -80,6 +80,7 @@ category_choices_list = (
 	# ('age','Age'),
 )
 group_choices_list = (
+	('ALL', 'ALL'),
 	('PFC', 'PFC'),
 	('HIP', 'HIP'),
 	('EC', 'EC'),
