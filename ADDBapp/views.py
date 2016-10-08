@@ -215,7 +215,8 @@ def query(request):
 				stat_table = test_stat_df.drop(['eval', 'dsl'], axis=1)
 				# import pdb; pdb.set_trace()
 				stat_table['entrez_gene_id'] = stat_table.apply(from_symbol_to_entrez_gene_id, axis=1)
-				stat_table['string_id'] = from_single_symbol_to_string_id(stat_table['symb'])
+				# stat_table['string_id'] = from_single_symbol_to_string_id(stat_table['symb'])
+				string_id_series = from_single_symbol_to_string_id(stat_table['symb'])
 				
 				# import pdb; pdb.set_trace()
 
@@ -237,7 +238,7 @@ def query(request):
 							'group' : request.POST["group"],
 							'comparison' : request.POST["comparison"],
 							'features' : generate_mulivariable_series_from_list(feature_symbols_in_interest),
-							'string_url_id_component' : generate_string_id_get_query_from_list(stat_table['string_id'])
+							'string_url_id_component' : generate_string_id_get_query_from_list(string_id_series)
 						})
 	else:		
 		return render(request, 'query.html', {
