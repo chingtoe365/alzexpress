@@ -76,3 +76,11 @@ def filtered_duplicate_by(df, metric):
 def split_feature_input_to_list(feature_str):
 	delimer = "\r\n"
 	return feature_str.split(delimer)
+
+
+def extract_gene_symbol_from_protein_name(protein_name):
+	symb_search = re.search(r'(.+\()(.+)(\).+')
+	if not symb_search:
+		return symb_search.group(2)
+	else:
+		return None

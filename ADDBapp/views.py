@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from .utils import combine_multiple_filters_to_query, filtered_duplicate_by, \
-				split_feature_input_to_list
+				split_feature_input_to_list, extract_gene_symbol_from_protein_name
 
 from data_utils import normalize_heatmap_row_expression
 
@@ -188,7 +188,8 @@ def query(request):
 				if request.POST["dataType"] == "RNA":
 					filt_ind = (test_statistics['dataset_accession'] == dataset) & (test_statistics['symb'].isin(feature_symbols_in_interest))
 				elif request.POST["dataType"] == "protein":
-					filt_ind = (test_statistics['dataset_accession'] == dataset) & (test_statistics['symb'].isin(feature_symbols_in_interest))
+					symbol_series = test_statistics['symb'].apply(extract_gene_symbol_from_protein_name)
+					filt_ind = (test_statistics['dataset_accession'] == dataset) & (symbol_series.isin(feature_symbols_in_interest))
 
 				test_stat_df = test_statistics[filt_ind]
 
