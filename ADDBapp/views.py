@@ -217,7 +217,7 @@ def query(request):
 				stat_table = test_stat_df.drop(['eval', 'dsl'], axis=1)
 				# import pdb; pdb.set_trace()
 				stat_table['entrez_gene_id'] = stat_table.apply(from_symbol_to_entrez_gene_id, axis=1)
-				# stat_table['string_id'] = from_single_symbol_to_string_id(stat_table['symb'])
+				stat_table['string_id'] = from_single_symbol_to_string_id(stat_table['symb'])
 				string_id_series = from_single_symbol_to_string_id(stat_table['symb'])
 				
 				# import pdb; pdb.set_trace()
