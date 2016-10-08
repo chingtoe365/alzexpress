@@ -42,7 +42,11 @@ def from_single_symbol_to_string_id(symb_series):
 	returned_symbols = [x.split("\t")[4] for x in response.content.split("\n") if not not x]
 	returned_string_ids = [x.split("\t")[1] for x in response.content.split("\n") if not not x]
 
-	return pd.Series(returned_string_ids)[pd.Series(returned_symbols).isin(queried_genes)].values.tolist()
+	corresponding_id = pd.Series(returned_string_ids)[pd.Series(returned_symbols).isin(queried_genes)].values.tolist()
+	if corresponding_id:
+		return corresponding_id
+	else: 
+		return None
 	# gene_entry = annotation_client.get_entrez_gene_id_from_symbol(row['symb'])
 	# import pdb; pdb.set_trace()
 	# egid = str(gene_entry['entrez_gene_id'][0]) if gene_entry is not None else "0"
