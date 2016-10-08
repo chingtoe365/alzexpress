@@ -185,7 +185,11 @@ def query(request):
 
 			for dataset in all_datasets:
 				# Filter 1 - dataset accession & features in interest
-				filt_ind = (test_statistics['dataset_accession'] == dataset) & (test_statistics['symb'].isin(feature_symbols_in_interest))
+				if request.POST["dataType"] == "RNA":
+					filt_ind = (test_statistics['dataset_accession'] == dataset) & (test_statistics['symb'].isin(feature_symbols_in_interest))
+				elif request.POST["dataType"] == "protein":
+					filt_ind = (test_statistics['dataset_accession'] == dataset) & (test_statistics['symb'].isin(feature_symbols_in_interest))
+
 				test_stat_df = test_statistics[filt_ind]
 
 				# Filter 2 - remove duplicates
