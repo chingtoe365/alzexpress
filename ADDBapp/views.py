@@ -152,6 +152,8 @@ def query(request):
 	form = featureSelectionForm()
 	# query output for displaying
 	output = []
+	# preset variables
+	string_id_series = []
 	# Mongo query to be defined
 	query = ''
 	if request.method == 'POST' :
