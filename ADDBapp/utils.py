@@ -79,7 +79,7 @@ def split_feature_input_to_list(feature_str):
 
 
 def extract_gene_symbol_from_protein_name(protein_name):
-	symb_search = re.search(r'(.+\()(.+)(\).+)', protein_name)
+	symb_search = re.search(r'(.*\()(.+)(\).*)', protein_name)
 	if symb_search:
 		return symb_search.group(2)
 	else:
