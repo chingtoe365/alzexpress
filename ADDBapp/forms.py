@@ -123,3 +123,20 @@ class featureSelectionForm(forms.Form):
 	comparison = forms.ChoiceField(choices=comparison_choices_list, label="Choose a comparison")
 	probeSelectionMethod = forms.ChoiceField(choices=probe_select_choices_list, label="Choose a way to select probe when duplicate found")
 	featureInput = forms.CharField(widget=forms.Textarea(attrs={"placeholder" : "APOE\nBIN\nCLU"}), label="Input the features in interest")
+
+
+
+class tissueDataTypeSelectionForm(forms.Form):
+	RNA_blood_region__ALL_AD__vs__Control = forms.BooleanField(label="RNA - Blood", required=False)
+	protein_blood_region__ALL_AD__vs__Control = forms.BooleanField(label="Protein - Blood", required=False)
+	RNA_brain_region__PFC_AD__vs__Control = forms.BooleanField(label="RNA - PFC", required=False)
+	RNA_brain_region__HIP_AD__vs__Control = forms.BooleanField(label="RNA - HIP", required=False)
+	RNA_brain_region__PC_AD__vs__Control = forms.BooleanField(label="RNA - PC", required=False)
+	RNA_brain_region__POCG_AD__vs__Control = forms.BooleanField(label="RNA - POCG", required=False)
+	RNA_brain_region__PVC_AD__vs__Control = forms.BooleanField(label="RNA - PVC", required=False)
+	RNA_brain_region__SFG_AD__vs__Control = forms.BooleanField(label="RNA - SFG", required=False)
+	RNA_brain_region__TC_AD__vs__Control = forms.BooleanField(label="RNA - TC", required=False)
+	RNA_brain_region__VI_AD__vs__Control = forms.BooleanField(label="RNA - VI", required=False)
+	RNA_brain_region__EC_AD__vs__Control = forms.BooleanField(label="RNA - EC", required=False)
+	RNA_brain_region__CE_AD__vs__Control = forms.BooleanField(label="RNA - CE", required=False)
+	# dataType = forms.ChoiceField(choices=dataType_choices_list, label="Choose samples of a data type")

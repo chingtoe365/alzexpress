@@ -43,9 +43,15 @@ span.first-letter{
 	display: inline-block;
 }
 .header-image img{
-	height: 140px;
+	height: 120px;
 	width: auto;
 }
+/*#brain{
+	height: 70px;
+}
+#brain img{
+	height: 100%;width: auto;
+}*/
 .logo{
 	font-family: 'Lobsters';
 	font-size: 25px;
@@ -101,3 +107,59 @@ span.first-letter{
 	color:#000000;
 }
 
+/*cross study page =========*/
+.cross-study-query-form{
+	margin-top:20px;
+}
+.cross-study-query-form label{
+	/*width: 70px;*/
+	/*height: 60px;*/
+	padding-left:30px;
+	padding-right:30px;
+	background-color:rgba(0, 205, 0, 0.2);
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
+	/*background: #1e5799; /* Old browsers */*/
+/*	background: -moz-linear-gradient(45deg,  rgba(0,205,0,0.5) 0%, #ffffff 100%); 
+	background: -webkit-linear-gradient(45deg,  rgba(0,205,0,0.5) 0%, #ffffff 100%); 
+	background: linear-gradient(45deg,  rgba(0,205,0,0.5) 0%, #ffffff 100%); 
+*/
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	border-radius: 5px;
+	/*padding:5px;*/
+	/*background-color: #ccc*/
+}
+
+.cross-study-query-form input[type=checkbox]{
+	display: none;
+	font-weight: 600;
+/*	width:20px;
+	height:20px;
+	background-color: white;
+	box-sizing:none;*/
+}
+
+.cross-study-query-form input[type=submit]{
+	background-color:rgba(0, 0, 205, 0.2);
+	border-radius: 5px;
+	padding:10px;
+	border:none;	
+	font-weight: 700;
+	font-size:15pt;
+}
+.cross-study-query-form input[type=submit]:hover{
+	background-color:rgba(0, 0, 205, 0.4);
+
+}
+
+
+.checkbox-mask{
+	position: absolute;
+	right: 0;
+	top: 0;
+	border-radius:5px;
+	/*background-color: red;*/
+	/*width: 20px;*/
+	height: 15px;
+}

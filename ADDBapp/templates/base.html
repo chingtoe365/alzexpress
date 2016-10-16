@@ -22,6 +22,11 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/heatmap.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>  
+
+    <!-- data table -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
 	<!-- load static files -->
 	{% load staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
@@ -36,17 +41,18 @@
 				<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 logo">
 					<img src="{% static 'img/logo.png' %}" />
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+				<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 					<ul class="menu">
 						<li><a href="{% url 'addb_home' %}">Home</a></li>
 						<!-- <li><a href="{% url 'addb_upload' %}">Upload</a></li> -->
 						<li><a href="{% url 'addb_query' %}">Query</a></li>
 						<li><a href="{% url 'addb_summary' %}">Summary</a></li>
+						<li><a href="{% url 'addb_cross_studies' %}">Cross Studies</a></li>
 					</ul>
 				</div>
-				<div class="col-lg-6 col-md-6 ">
+				<div class="col-lg-5 col-md-5 ">
 						<div class="header-image" id="brain"><img src="{% static 'img/brain.png' %}"></div>
-						<div class="header-image" id="lightening"></div>
+						<!-- <div class="header-image" id="lightening"></div> -->
 						<div class="header-image" id="microarray"><img src="{% static 'img/microarray.png' %}"></div>
 				</div>
 			</div>

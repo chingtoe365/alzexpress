@@ -155,9 +155,15 @@ class TestStatClient():
 	def __init__(self):
 		client = MongoClient(host=DB_HOST, port=DB_PORT)
 		self.db = client['teststat']
-
+	
+	def get_all_collections(self):
+		return self.db.collection_names()
+		
 	def get_all_records(self, collection):
-		return self.db[collection].find()
+		return self.db[collection].find({
+			'sample_count' : {'$exists' : 0}, 
+			'disease_state' : {'$exists' : 0}
+		})
 
 	def get_all_datasets(self, collection):
 		return self.db[collection].distinct('dataset_accession')
@@ -241,8 +247,14 @@ class MetaStatClient():
 		client = MongoClient(host=DB_HOST, port=DB_PORT)
 		self.db = client['metastat']
 
+	def get_all_collections(self):
+		return self.db.collection_names()
+
 	def get_all_records(self, collection):
-		return self.db[collection].find()
+		return self.db[collection].find({
+			'sample_count' : {'$exists' : 0}, 
+			'disease_state' : {'$exists' : 0}
+		})
 
 	def insert_meta_analysis_record(self, collection, record):
 		"""

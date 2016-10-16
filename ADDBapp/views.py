@@ -4,11 +4,13 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from .utils import combine_multiple_filters_to_query, filtered_duplicate_by, \
-				split_feature_input_to_list, extract_gene_symbol_from_protein_name
+				split_feature_input_to_list, \
+				extract_gene_symbol_from_protein_name, \
+				check_nan_in_a_row
 
 from data_utils import normalize_heatmap_row_expression
 
-from .forms import featureSelectionForm
+from .forms import featureSelectionForm, tissueDataTypeSelectionForm
 
 from graph_data import generate_series_from_list, generate_scatterplot_series, \
 						generate_volcanoplot_series
@@ -76,7 +78,6 @@ def summary(request):
 		'region_proportion' : region_proportion_dict_list
 	})
 
-
 def dataset_summary(request, dataset):
 	# Set returned variables
 	region_proportion_dict_list = []
@@ -87,6 +88,7 @@ def dataset_summary(request, dataset):
 	female_count = sample_client.count_gender_samples(dataset, 'F')
 	all_regions = list(sample_client.get_all_regions(dataset))
 	all_regions = [x.encode("utf-8") for x in all_regions]
+	all_regions = ['ALL'] if len(all_regions) == 0 else all_regions
 	for region in all_regions:
 		region_dict[region] = sample_client.count_region_samples(dataset, region)
 
@@ -202,13 +204,13 @@ def query(request):
 				"""
 
 				if way_to_choose_probe == "fold change":
-					test_stat_df = filtered_duplicate_by(test_stat_df, 'fc')
+					test_stat_df = filtered_duplicate_by(test_stat_df, by='fc', group_index=['symb'])
 
 				elif way_to_choose_probe == "limma p value" : 
-					test_stat_df = filtered_duplicate_by(test_stat_df, 'lp')
+					test_stat_df = filtered_duplicate_by(test_stat_df, by='lp', group_index=['symb'])
 
 				elif way_to_choose_probe == "t test p value" :
-					test_stat_df = filtered_duplicate_by(test_stat_df, 'tp')
+					test_stat_df = filtered_duplicate_by(test_stat_df, by='tp', group_index=['symb'])
 
 				if test_stat_df.empty:
 					all_datasets.remove(dataset)
@@ -247,7 +249,6 @@ def query(request):
 		return render(request, 'query.html', {
 			'form' : form
 		})
-
 
 def detail(request):
 	"""
@@ -293,13 +294,13 @@ def detail(request):
 	"""
 
 	if way_to_choose_probe == "fold change":
-		test_stat_df = filtered_duplicate_by(test_stat_df, 'fc')
+		test_stat_df = filtered_duplicate_by(test_stat_df, by='fc', group_index=['symb'])
 
 	elif way_to_choose_probe == "limma p value" : 
-		test_stat_df = filtered_duplicate_by(test_stat_df, 'lp')
+		test_stat_df = filtered_duplicate_by(test_stat_df, by='lp', group_index=['symb'])
 
 	elif way_to_choose_probe == "t test p value" :
-		test_stat_df = filtered_duplicate_by(test_stat_df, 'tp')
+		test_stat_df = filtered_duplicate_by(test_stat_df, by='tp', group_index=['symb'])
 
 	# Split dataframe for stat table display and graph display
 	stat_table = test_stat_df.drop(['eval', 'dsl'], axis=1)
@@ -379,7 +380,6 @@ def detail(request):
 					'state_1_name' : state_1_name,
 					'state_0_name' : state_0_name,
 				})
-
 
 def meta(request):
 	"""
@@ -463,4 +463,169 @@ def meta(request):
 					'union_feature_count' : union_feature_count,
 					'intersect_feature_count' : intersect_feature_count
 				})
+
+
+def cross_study(request):
+	"""
+		This page is to display cross study results
+	"""
+	form = tissueDataTypeSelectionForm()
+	collection_names = []
+	comm_deg_stat_list = []
+	DEG_num_list = []
+	common_deg_names = []
+
+	# import pdb;pdb.set_trace();
+	if request.method == 'POST':
+		form = tissueDataTypeSelectionForm(request.POST)
+		# import pdb;pdb.set_trace();
+		if form.is_valid():
+			form = tissueDataTypeSelectionForm()
+			# import pdb;pdb.set_trace();
+			checked_fields = list(request.POST.viewkeys())
+			# remove form token
+			checked_fields.remove('csrfmiddlewaretoken')
+			# if it is null then return original form
+			if not checked_fields:
+				return render(request, 'cross_study.html', {
+						'form' : form, 
+						'message' : 'Please select at least one group you want to look into'
+					})
+			# replace double underscore "__" to hyphen "-"
+			# and those been replaced are collection names
+			collection_names = [x.replace('__', '-').encode('utf-8') for x in checked_fields]
+			# import pdb;pdb.set_trace();
+			
+			# extract tissue, data type, and region
+			table_header_names = [' '.join([x.split('_')[0].capitalize(), x.split('_')[1].capitalize(), x.split('_')[2].capitalize()]) for x in collection_names]
+
+			# Get collection names
+			meta_collections = meta_stat_client.get_all_collections()
+			stat_collections = test_stat_client.get_all_collections()
+
+			# Variables to return 
+			comm_deg_df = pd.DataFrame()
+
+			# Remove duplicate columns
+			cols_to_use = ['symb']
+
+			for collection in collection_names:
+				
+				if collection in meta_collections:
+					# If this collection is found in meta stats, use it
+					# Count DEG numbers
+					all_meta_stat = list(meta_stat_client.get_all_records(collection))
+					meta_stat_df = pd.DataFrame(all_meta_stat)
+
+					deg_df = meta_stat_df[meta_stat_df['bfp'] <= 0.05]
+
+					# change dataframe index to symbol
+					# If it's a collection for protein, change symbol names
+					if 'protein' in collection:
+						deg_df['index_temp'] = list(deg_df['symb'].apply(extract_gene_symbol_from_protein_name))
+					else:
+						deg_df['index_temp'] = list(deg_df['symb'])
+					# import pdb;pdb.set_trace();
+					
+					# Remove empty temp symbols
+					deg_df = deg_df[np.invert(deg_df['index_temp'] == '')]
+					# Assign it to index
+					deg_df.index = list(deg_df['index_temp'])
+
+					DEG_num_list.append(deg_df.shape[0])
+					# Prepare common genes
+					deg_df = pd.DataFrame(deg_df['bfp'])
+					deg_df.columns = [collection]
+					# print deg_df.index.is_unique
+		
+					comm_deg_df = pd.concat([comm_deg_df, deg_df], axis=1)
+					# import pdb;pdb.set_trace();
+					
+				else:
+					# If this collection is not found in meta stat collection, use only stat collection 
+					# Count DEG numbers
+					all_stat = list(test_stat_client.get_all_records(collection))
+					stat_df = pd.DataFrame(all_stat)
+
+					deg_df = stat_df[stat_df['lp'] <= 0.05]
+					# print deg_df.iloc[0:10,]
+					
+					# # remove duplicates
+					# deg_df = filtered_duplicate_by(deg_df, 'lp')
+					
+					# print deg_df.iloc[0:3, ]
+					# index_of_duplicates = deg_df.sort(['lp'], ascending=True).duplicated(cols_to_use, 'first')
+					# # filter dataframe
+					# deg_df = deg_df[np.invert(index_of_duplicates)]
+
+					# change dataframe index to symbol
+					# If it's a collection for protein, change symbol names
+					if 'protein' in collection:
+						deg_df['index_temp'] = list(deg_df['symb'].apply(extract_gene_symbol_from_protein_name))
+					else:
+						deg_df['index_temp'] = list(deg_df['symb'])
+					# print deg_df.iloc[0:10,]
+					# print deg_df.iloc[0:3, ]
+					
+					# Remove empty temp symbols
+					deg_df = deg_df[np.invert(deg_df['index_temp'] == '')]
+					
+					# remove duplicates
+					deg_df = filtered_duplicate_by(deg_df, by='lp', group_index=['index_temp'])
+					
+					# Assign it to index
+					deg_df.index = list(deg_df['index_temp'])
+
+					DEG_num_list.append(deg_df.shape[0])
+					# Prepare common genes
+					deg_df = pd.DataFrame(deg_df['lp'])
+					deg_df.columns = [collection]
+					
+					new_comm_df = pd.concat([comm_deg_df, deg_df], axis=1)
+					# print len(deg_df.index)
+					# print deg_df.index
+					# print comm_deg_df.shape
+					print new_comm_df.shape
+					print new_comm_df.index
+					print len(new_comm_df.index)
+					# print deg_df.iloc[0:3, ]
+					comm_deg_df = pd.concat([comm_deg_df, deg_df], axis=1)
+					# import pdb;pdb.set_trace();
+
+			# Filter out those records with at least one NaN (They do not appear in all collections) 
+			# Add one column to indicate NaN number
+			
+			comm_deg_df['no_nan'] = comm_deg_df.apply(check_nan_in_a_row, axis=1)
+			
+			# import pdb;pdb.set_trace();
+			
+			# Select those without nan and drop indicator column
+			comm_deg_df = comm_deg_df[comm_deg_df['no_nan']].drop(['no_nan'], axis=1)
+			# Turn into a list of dict
+			# comm_deg_stat_list = comm_deg_df.to_dict(orient='records')[0:9]
+			comm_deg_stat_list = comm_deg_df.to_dict(orient='records')
+			common_deg_names = list(comm_deg_df.index)
+			# print common_deg_names
+			# print comm_deg_df.iloc[0:9, ]
+
+			# import pdb;pdb.set_trace();
+
+			return render(request, 'cross_study.html', {
+					'form' : form,
+					'table_header_names' : table_header_names,
+					'common_deg_names' : common_deg_names,
+					'collection_names' : collection_names,
+					'common_deg_stat' : comm_deg_stat_list,
+					'common_deg_number_list' : DEG_num_list
+				})
+		
+		return render(request, 'cross_study.html', {
+				'form' : form
+			})
+
+	else:
+		return render(request, 'cross_study.html', {
+				'form' : form
+			})
+
 

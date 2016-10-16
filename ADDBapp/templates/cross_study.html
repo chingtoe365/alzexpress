@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load dictionary_extras %}
+
+{% block content %}
+<div class="message">{{ message }}</div>
+<div class="cross-study-query-form">
+	<form method="post" enctype="multipart/form-data">
+		<div id="forms">
+			{% csrf_token %}
+		    {{ form }}
+		</div>
+		<input type="submit" value="Submit Query"/>
+	</form>
+</div>
+
+<h2 class="tit">Common DEGs accross those groups</h2>
+<div class="notes">
+This table displays:
+<ul>
+	<li>For meta-analysis results - bonferroni corrected meta p-value</li>
+	<li>For single deg analysis results - limma p-value</li>
+</ul>
+</div>
+
+<br>
+
+<table id="common-deg-table">
+<thead>
+	<tr>
+		<th>Gene Symbol</th>
+		{% for collection in table_header_names %}
+		<th>{{ collection }}</th>
+		{% endfor %}
+	</tr>
+</thead>
+	<tbody>
+		{% for rec in common_deg_stat %}
+		<tr>
+		<td>{{ common_deg_names|access:forloop.counter0 }}</td>
+		{% for collection in collection_names %}
+		<td>{{ rec|access:collection|floatformat:"-3" }}</td>
+		{% endfor %}
+		</tr>
+		
+	{% endfor %}
+	</tbody>
+	
+</table>
+
+<br>
+
+<div id="barchart"></div>
+{% endblock %}
+
+
+{% block scripts %}
+
+    <script>
+        {% include 'partials/_deg_count_bar_chart.js' %}
+    </script>
+
+{% endblock %}

@@ -5,6 +5,11 @@ import pandas as pd
 
 import numpy as np
 
+
+check_nan_in_a_row = lambda x : all(np.invert(np.isnan(x))) 
+
+special_chars = pd.Series([' ', ':'])
+
 def extract_single_from_list_in_dataset_dict(dataset_dict):
 	''' 
 		turn [element, ] to 'element' before storing into the database  
@@ -58,7 +63,7 @@ def get_element_by_indexes(indexArray, array):
 	return [array[index] for index in xrange(len(array)) if index in indexArray]
 
 
-def filtered_duplicate_by(df, metric):
+def filtered_duplicate_by(df, by, group_index):
 	"""
 		First sort by descending order, and then group by symbol, then select the first occurence
 		Then select the indexes (probe names)
@@ -67,7 +72,7 @@ def filtered_duplicate_by(df, metric):
 	# filtered_probes = list(df.sort(metric, ascending=False).groupby('symb', as_index=False).first().index())
 	# probe_df = pd.DataFrame(df.index, columns=['probe'], index=df.index)
 	# df = pd.concat([probe_df, df], axis=1)
-	filtered_df = df.sort(metric, ascending=False).groupby('symb', as_index=False).first()
+	filtered_df = df.sort(by, ascending=False).groupby(group_index, as_index=False).first()
 	# print filtered_df
 	return filtered_df
 
@@ -81,6 +86,10 @@ def split_feature_input_to_list(feature_str):
 def extract_gene_symbol_from_protein_name(protein_name):
 	symb_search = re.search(r'(.*\()(.+)(\).*)', protein_name)
 	if symb_search:
-		return symb_search.group(2)
+		symb = symb_search.group(2)
+		if any(np.invert([e.isalnum() for e in symb])):
+			return ''
+		else:
+			return symb
 	else:
-		return None
+		return ''

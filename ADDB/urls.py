@@ -35,6 +35,7 @@ urlpatterns = [
     # url(r'^summary/(?P<dataset>GSE[\d]+)', views.dataset_summary, name="addb_dataset_summary"),
     url(r'^detail/', views.detail, name="addb_detail"),
     url(r'^meta/', views.meta, name="addb_meta"),
+    url(r'^crossstudy/', views.cross_study, name="addb_cross_studies"),
     url(r'^get_top_tables/', ajax.get_top_tables, name="addb_gettoptable"),
     # url(r'^featureQuery/', views.featureQuery, name="addb_featureQuery"),
     # url(r'^test/', views.test, name="addb_test"),
