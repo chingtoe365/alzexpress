@@ -58,7 +58,7 @@ def generate_volcanoplot_series(fold_change_p_value_df):
     # not_null_boolean_array_fc = np.invert(np.isnan(fold_change_p_value_df['fc']))
     fold_change_p_value_df = fold_change_p_value_df[not_null_boolean_array]
 
-    differentially_expressed_probes_or_not = (abs(fold_change_p_value_df['fc']) > np.log2(3)) & (fold_change_p_value_df['lp'] > -np.log10(0.05))
+    differentially_expressed_probes_or_not = (abs(fold_change_p_value_df['fc']) > np.log2(1.5)) & (fold_change_p_value_df['lp'] > -np.log10(0.05))
     normal_probes_or_not = list(np.invert(differentially_expressed_probes_or_not))
     differentially_expressed_probes_df = fold_change_p_value_df[differentially_expressed_probes_or_not]
     normal_expressed_probes_df = fold_change_p_value_df[normal_probes_or_not]

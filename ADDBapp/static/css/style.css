@@ -18,6 +18,13 @@ span.first-letter{
 	font-size: 25px;
 }
 
+.center{
+	text-align: center;
+}
+.title{
+	margin-top: 40px !important;
+	margin-bottom: 40px !important;
+}
 .string-link{
 	position: absolute;
 	/*top:-15px;*/

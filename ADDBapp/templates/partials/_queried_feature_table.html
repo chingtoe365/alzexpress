@@ -1,0 +1,46 @@
+{% load dictionary_extras %}
+
+{% with tab_state="active" %}
+<div class="tab-pane {{ tab_state|do_the_first:forloop.counter }}" id="{{ dataset }}">
+	{% with link="/detail/?dataset="|add:dataset|add:"&datatype="|add:datatype|add:"&tissue="|add:tissue|add:"&category="|add:category|add:"&group="|add:group|add:"&comparison="|add:comparison|add:"&features="|add:features|add:"&way_to_choose_probe="|add:way_to_choose_probe %}
+	<p class="dataset-title"><a href="{{ link }}">{{ dataset }}</a></p>
+	{% endwith %}
+	<table class="table table-responsive table-striped table-hover">
+		<thead>
+	    <tr>
+	        <th>Feature</th>
+	        <th>Fold change</th>
+	        <th>Limma z score</th>
+	        <th>Limma p value</th>
+	        <th>T-test z score</th>
+	        <th>T-test p value</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+    		{% for probe in content %}
+
+			<tr>
+				<td class="feature-annotation">
+					{% with string_link="http://version_10.string-db.org/cgi/network.pl?all_channels_on=1&block_structure_pics_in_bubbles=0&direct_neighbor=1&hide_disconnected_nodes=0&hide_node_labels=0&network_display_mode=svg&network_flavor=evidence&targetmode=proteins&identifier="|add:probe.string_id %}
+					<a class="string-link" href="{{ string_link }}"></a>
+					{% endwith %}
+					{% with gene_link="http://www.ncbi.nlm.nih.gov/gene/"|add:probe.entrez_gene_id %}
+					<a href="{{ gene_link }}">
+						{{ probe.symb }}
+					</a>
+					{% endwith %}
+				</td>
+				<td>{{ probe.fc|floatformat:"-3" }}</td>
+				<td>{{ probe.lt|floatformat:"-3" }}</td>
+				<td>{{ probe.lp|floatformat:"-3" }}</td>
+				<td>{{ probe.tt|floatformat:"-3" }}</td>
+				<td>{{ probe.tp|floatformat:"-3" }}</td>
+
+			</tr>
+    		{% endfor %}
+	    	
+	    </tbody>
+
+	</table>	
+</div>
+{% endwith %}

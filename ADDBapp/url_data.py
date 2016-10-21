@@ -42,7 +42,10 @@ def from_single_symbol_to_string_id(symb_series):
 	returned_symbols = [x.split("\t")[4] for x in response.content.split("\n") if not not x]
 	returned_string_ids = [x.split("\t")[1] for x in response.content.split("\n") if not not x]
 
-	corresponding_id = pd.Series(returned_string_ids)[pd.Series(returned_symbols).isin(queried_genes)].values.tolist()
+	corresponding_id = [returned_string_ids[returned_symbols.index(x)] if x in returned_symbols else '' for x in queried_genes]
+	# corresponding_id = pd.Series(returned_string_ids)[pd.Series(returned_symbols).isin(queried_genes)].values.tolist()
+	# import pdb;pdb.set_trace();
+	
 	if corresponding_id:
 		return corresponding_id
 	else: 

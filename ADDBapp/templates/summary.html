@@ -1,12 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div id="sample_count"></div>
-	<div id="gender_count"></div>
-	<div id="region_count"></div>
+<div class="title">
+	<h2 class="center">Sample distribution</h2>
+</div>
+<div class="container" id="bar-chart-container">
+	<div class="col-lg-4" id="sample_count"></div>
+	<div class="col-lg-4" id="gender_count"></div>
+	<div class="col-lg-4" id="region_count"></div>
+</div>
+<div class="title">
+	<h2 class="center">Dataset data type and located tissue</h2>
+</div>
+<div class="container">
+	<table class="table table-responsive table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Dataset</th>
+				<th>Data Type</th>
+				<th>Tissue</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for dataset in data_type_and_tissue_summary %}
+			<tr>
+				<td>{{ dataset.dataset_accession }}</td>
+				<td>{{ dataset.data_type }}</td>
+				<td>{{ dataset.tissue }}</td>
+			</tr>
+		{% endfor%}	
+		</tbody>
+		
+	</table>
+</div>
 {% endblock %}
 
 {% block styles %}
+<style type="text/css">
+#bar-chart-container{
+	margin-top:100px;
+}
+</style>
 {% endblock %}
 
 {% block scripts %}

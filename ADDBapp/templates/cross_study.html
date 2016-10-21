@@ -24,15 +24,24 @@ This table displays:
 
 <br>
 
-<table id="common-deg-table">
-<thead>
-	<tr>
-		<th>Gene Symbol</th>
-		{% for collection in table_header_names %}
-		<th>{{ collection }}</th>
-		{% endfor %}
-	</tr>
-</thead>
+{% if csv_url_part %}
+<div class="download_button">
+	<a class="btn btn-primary pull-right" href="{% url 'addb_download_cross_study_deg_csv' csv_url_part %}">Download csv file</a>
+</div>
+{% endif %}
+
+<br>
+<br>
+
+<table class="table table-responsive table-striped table-hover data-table">
+	<thead>
+		<tr>
+			<th>Gene Symbol</th>
+			{% for collection in table_header_names %}
+			<th>{{ collection }}</th>
+			{% endfor %}
+		</tr>
+	</thead>
 	<tbody>
 		{% for rec in common_deg_stat %}
 		<tr>

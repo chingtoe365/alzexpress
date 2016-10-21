@@ -7,10 +7,18 @@
 	<div id="volcano-summary">
 		<h3>Differentially expressed molecule (DEM) identification</h3>
 		<p>Criteria:</p>
-		<p>&nbsp;&nbsp;&nbsp;- Absolute fold change > 3</p>
+		<p>&nbsp;&nbsp;&nbsp;- Absolute fold change > 1.5</p>
 		<p>&nbsp;&nbsp;&nbsp;- Limma p-value < 0.05</p>
 		<p>In total, there are <span style="font-weight:700">{{ deg_count }}</span> DEMs identified among <span style="font-weight:700">{{ molecule_count }}</span> molecules </p>
 	</div>
+	<br>
+
+	<h4>Get fold changes and p-values:</h4>
+	<div class="download_button">
+		<a class="btn btn-primary" href="{% url 'download_csv_for_separate_stat' dataset region %}">Download CSV</a>
+	</div>
+
+	<br>
 {% endblock %}
 
 {% block styles %}

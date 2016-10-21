@@ -116,13 +116,13 @@ probe_select_choices_list = (
 
 
 class featureSelectionForm(forms.Form):
-	dataType = forms.ChoiceField(choices=dataType_choices_list, label="Choose samples of a data type")
-	tissue = forms.ChoiceField(choices=tissue_choices_list, label="Choose a tissue")
-	category = forms.ChoiceField(choices=category_choices_list, label="Choose a category to analyze")
-	group = forms.ChoiceField(choices=group_choices_list, label="Choose a category value")
-	comparison = forms.ChoiceField(choices=comparison_choices_list, label="Choose a comparison")
-	probeSelectionMethod = forms.ChoiceField(choices=probe_select_choices_list, label="Choose a way to select probe when duplicate found")
-	featureInput = forms.CharField(widget=forms.Textarea(attrs={"placeholder" : "APOE\nBIN\nCLU"}), label="Input the features in interest")
+	dataType = forms.ChoiceField(choices=dataType_choices_list, label="Choose samples of a data type", widget=forms.Select(attrs={'class' : 'form-control'}))
+	tissue = forms.ChoiceField(choices=tissue_choices_list, label="Choose a tissue", widget=forms.Select(attrs={'class' : 'form-control'}))
+	category = forms.ChoiceField(choices=category_choices_list, label="Choose a category to analyze", widget=forms.Select(attrs={'class' : 'form-control'}))
+	group = forms.ChoiceField(choices=group_choices_list, label="Choose a category value", widget=forms.Select(attrs={'class' : 'form-control'}))
+	comparison = forms.ChoiceField(choices=comparison_choices_list, label="Choose a comparison", widget=forms.Select(attrs={'class' : 'form-control'}))
+	probeSelectionMethod = forms.ChoiceField(choices=probe_select_choices_list, label="Choose a way to select probe when duplicate found", widget=forms.Select(attrs={'class' : 'form-control'}))
+	featureInput = forms.CharField(widget=forms.Textarea(attrs={"placeholder" : "APOE\nBIN\nCLU", "class" : "form-control"}), label="Input the features in interest")
 
 
 

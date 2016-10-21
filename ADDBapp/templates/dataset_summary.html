@@ -3,20 +3,24 @@
 {% block content %}
 	<h2>Meta Information of {{ dataset }} </h2>
 	<!-- <div id="sample_count"></div> -->
-	<div class="col-lg-4" id="gender_count"></div>
-	<div class="col-lg-4" id="region_count"></div>
-	<div class="col-lg-4" id="links_to_volcano">
-		<h4>Volcano plots can help quickly identify changes in large data sets composed of replicate data</h4>
-		<br>
-		<select id="region-selector">
-			{% for region in regions %}
-				<option value="{{region}}">{{region}}</option>
-			{% endfor %}			
-		</select>
-		<br>
-		<br>
-		<button id="check_volcano">See Volcano plot for this region</button>
+	<div class="container">
+		<div class="col-lg-4" id="gender_count"></div>
+		<div class="col-lg-4" id="region_count"></div>
+		<div class="col-lg-4" id="age_count"></div>
+		<div class="col-lg-4" id="links_to_volcano">
+			<h4>Volcano plots can help quickly identify changes in large data sets composed of replicate data</h4>
+			<br>
+			<select id="region-selector" class="form-control">
+				{% for region in regions %}
+					<option value="{{region}}">{{region}}</option>
+				{% endfor %}			
+			</select>
+			<br>
+			<br>
+			<button id="check_volcano" class="btn btn-primary">See Volcano plot for this region</button>
+		</div>	
 	</div>
+	
 	<!-- <div id="volcano"></div> -->
 {% endblock %}
 

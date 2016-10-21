@@ -26,58 +26,34 @@
 		 	{{way_to_choose_probe}}
 		 </div>
 	</div>
+	<br>
+	<br>
+    <ul class="nav nav-tabs" role="tablist">
+    {% for dataset, content in test_stat.items %}
+    {% if forloop.counter == 1 %}
+    <li class="active"><a href="#{{ dataset }}" role="tab" data-toggle="tab">{{ dataset }}</a></li>
+    {% else %}
+    <li><a href="#{{ dataset }}" role="tab" data-toggle="tab">{{ dataset }}</a></li>
+    {% endif %}
+
+    {% endfor %}
+    </ul>
+    <div class="tab-content">
 	{% for dataset, content in test_stat.items %}
 	<!-- {{ k }} : {{ v }} -->
-	{% with link="/detail/?dataset="|add:dataset|add:"&datatype="|add:datatype|add:"&tissue="|add:tissue|add:"&category="|add:category|add:"&group="|add:group|add:"&comparison="|add:comparison|add:"&features="|add:features|add:"&way_to_choose_probe="|add:way_to_choose_probe %}
-	<p class="dataset-title"><a href="{{ link }}">{{ dataset }}</a></p>
-	{% endwith %}
-	<table class="table">
-		<thead>
-	    <tr>
-	        <th>Feature</th>
-	        <th>Fold change</th>
-	        <th>Limma z score</th>
-	        <th>Limma p value</th>
-	        <th>T-test z score</th>
-	        <th>T-test p value</th>
-	    </tr>
-	    </thead>
-	    <tbody>
-    		{% for probe in content %}
+	{% include 'partials/_queried_feature_table.html' %}
 
-			<tr>
-				<td class="feature-annotation">
-					{% with string_link="http://version_10.string-db.org/cgi/network.pl?all_channels_on=1&block_structure_pics_in_bubbles=0&direct_neighbor=1&hide_disconnected_nodes=0&hide_node_labels=0&network_display_mode=svg&network_flavor=evidence&targetmode=proteins&identifier="|add:probe.string_id %}
-					<a class="string-link" href="{{ string_link }}"></a>
-					{% endwith %}
-					{% with gene_link="http://www.ncbi.nlm.nih.gov/gene/"|add:probe.entrez_gene_id %}
-					<a href="{{ gene_link }}">
-						{{ probe.symb }}
-					</a>
-					{% endwith %}
-				</td>
-				<td>{{ probe.fc|floatformat:"-3" }}</td>
-				<td>{{ probe.lt|floatformat:"-3" }}</td>
-				<td>{{ probe.lp|floatformat:"-3" }}</td>
-				<td>{{ probe.tt|floatformat:"-3" }}</td>
-				<td>{{ probe.tp|floatformat:"-3" }}</td>
-
-			</tr>
-    		{% endfor %}
-	    	
-	    </tbody>
-
-	</table>
-	<div id="heatmap-chart-{{ dataset }}">
-		
-	</div>
 	{% endfor %}
+    </div>
+	<br>
 	{% with meta_link="/meta/?datatype="|add:datatype|add:"&tissue="|add:tissue|add:"&category="|add:category|add:"&group="|add:group|add:"&comparison="|add:comparison|add:"&features="|add:features %}
 	<a class="obvious" href="{{ meta_link }}">See Meta-analysis result</a> <br>
 	{% endwith %}
 	{% with string_group_link="http://version_10.string-db.org/cgi/network.pl?all_channels_on=1&block_structure_pics_in_bubbles=0&direct_neighbor=1&hide_disconnected_nodes=0&hide_node_labels=0&limit=0&network_display_mode=svg&network_flavor=evidence&targetmode=proteins&identifiers="|add:string_url_id_component %}
+	<br>
 	<a class="obvious" href="{{ string_group_link }}">See STRING network for quried features</a>
 	{% endwith %}
+	}
 
 
 {% endblock %}
@@ -89,7 +65,6 @@
 	width: 2000px;
 	height: 1000px;
 }	
-
 </style>
 
 {% endblock %}

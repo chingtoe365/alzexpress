@@ -37,7 +37,7 @@ $(function(){
 	$('.cross-study-query-form input[type=submit]').val('Check common DEGs');
 
 	// activate data table for deg table in cross study
-	$('#common-deg-table').DataTable();
+	$('.data-table').DataTable();
 })
 
 // http://string-db.org/api/tsv/resolveList?identifiers=trpA%0DtrpB&species=511145

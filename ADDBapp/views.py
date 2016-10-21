@@ -8,6 +8,8 @@ from .utils import combine_multiple_filters_to_query, filtered_duplicate_by, \
 				extract_gene_symbol_from_protein_name, \
 				check_nan_in_a_row
 
+from data_formatter import get_deg_tables_from_collection
+
 from data_utils import normalize_heatmap_row_expression
 
 from .forms import featureSelectionForm, tissueDataTypeSelectionForm
@@ -39,6 +41,7 @@ def summary(request):
 	sample_proportion_dict_list = []
 	region_proportion_dict_list = []
 	gender_proportion_dict_list = []
+	data_type_tissue_dict_list = []
 	region_dict = {}
 	male_count = 0
 	female_count = 0
@@ -54,7 +57,11 @@ def summary(request):
 		female_count += sample_client.count_gender_samples(dataset, 'F')
 		for region in ALL_REGIONS:
 			region_dict[region] += sample_client.count_region_samples(dataset, region)
-
+		data_type_tissue_dict_list.append({
+				'dataset_accession' : dataset,
+				'data_type' : sample_client.get_data_type(dataset),
+				'tissue' : sample_client.get_tissue(dataset)
+			})
 	gender_proportion_dict_list = [
 		{
 			'name' : 'Male',
@@ -75,7 +82,8 @@ def summary(request):
 	return render(request, 'summary.html', {
 		'sample_proportion' : sample_proportion_dict_list,
 		'gender_proportion' : gender_proportion_dict_list,
-		'region_proportion' : region_proportion_dict_list
+		'region_proportion' : region_proportion_dict_list,
+		'data_type_and_tissue_summary' : data_type_tissue_dict_list
 	})
 
 def dataset_summary(request, dataset):
@@ -123,13 +131,14 @@ def dataset_summary(request, dataset):
 
 def summary_volcano(request, dataset, region):
 	# Set returned variables
-	print dataset
-	print region
-	collection_name = "RNA_brain_region-" + region + "_AD-vs-Control"
+	data_type = sample_client.get_data_type(dataset)
+	tissue = sample_client.get_tissue(dataset)
+	
+	collection_name = data_type + "_" + tissue + "_region-" + region + "_AD-vs-Control"
 	# Vocano plots
 
 	fold_change_p_value_list = list(test_stat_client.get_all_pval_fold_change_for_this_dataset(collection_name, dataset))
-	print len(fold_change_p_value_list)
+	# print len(fold_change_p_value_list)
 	fold_change_p_value_df = pd.DataFrame(fold_change_p_value_list)
 	deg_series, normal_series, deg_features, normal_features = generate_volcanoplot_series(fold_change_p_value_df)
 	
@@ -138,6 +147,7 @@ def summary_volcano(request, dataset, region):
 
 	return render(request, 'dataset_summary_volcano.html', {
 		'dataset' : dataset,
+		'region' : region,
 		'volcano_deg_data_series' : deg_series,
 		'volcano_normal_data_series' : normal_series,
 		'volcano_deg_features' : deg_features,
@@ -309,6 +319,7 @@ def detail(request):
 
 	# import pdb; pdb.set_trace()
 	stat_table['entrez_gene_id'] = stat_table.apply(from_symbol_to_entrez_gene_id, axis=1)			
+	stat_table['string_id'] = from_single_symbol_to_string_id(stat_table['symb'])
 
 	ds_1_count = sum(stat_graph_ds)
 	ds_0_count = len(stat_graph_ds) - sum(stat_graph_ds)
@@ -424,6 +435,7 @@ def meta(request):
 
 	# Select top 10 by meta-p-value
 	records_top_10 = records.sort('pval', ascending=True).iloc[0:9, ]
+	# records_top_10 = records.sort('pval', ascending=True)
 
 	records_top_10['entrez_gene_id'] = records_top_10.apply(from_symbol_to_entrez_gene_id, axis=1)
 	
@@ -440,10 +452,16 @@ def meta(request):
 
 	meta_df['feature_count'] = symbol_count_list
 	meta_df['dataset_accession'] = meta_df.index
+	# import pdb;pdb.set_trace();
+
+	# Add string ids
+	records_queried['string_id'] = from_single_symbol_to_string_id(records_queried['symb'])
+	# import pdb;pdb.set_trace();
+	# records_top_10['string_id'] = from_single_symbol_to_string_id(records_top_10['symb'])
+	# import pdb;pdb.set_trace();
 	
 	union_feature_count = records.shape[0]
 	check_all_presence = lambda x : '?' not in x['eff']
-	# import pdb;pdb.set_trace();
 	
 	intersect_feature_count = sum(records.apply(check_all_presence, axis=1))
 	
@@ -459,11 +477,11 @@ def meta(request):
 					'meta_stat_queried' : meta_stat_queried,
 					'meta_stat_top_10' : meta_stat_top_10,
 					'collection_name' : collection_name,
+					'feature_string' : '+'.join(feature_symbols_in_interest),
 					'meta_info' : meta_info,
 					'union_feature_count' : union_feature_count,
 					'intersect_feature_count' : intersect_feature_count
 				})
-
 
 def cross_study(request):
 	"""
@@ -509,88 +527,7 @@ def cross_study(request):
 			# Remove duplicate columns
 			cols_to_use = ['symb']
 
-			for collection in collection_names:
-				
-				if collection in meta_collections:
-					# If this collection is found in meta stats, use it
-					# Count DEG numbers
-					all_meta_stat = list(meta_stat_client.get_all_records(collection))
-					meta_stat_df = pd.DataFrame(all_meta_stat)
-
-					deg_df = meta_stat_df[meta_stat_df['bfp'] <= 0.05]
-
-					# change dataframe index to symbol
-					# If it's a collection for protein, change symbol names
-					if 'protein' in collection:
-						deg_df['index_temp'] = list(deg_df['symb'].apply(extract_gene_symbol_from_protein_name))
-					else:
-						deg_df['index_temp'] = list(deg_df['symb'])
-					# import pdb;pdb.set_trace();
-					
-					# Remove empty temp symbols
-					deg_df = deg_df[np.invert(deg_df['index_temp'] == '')]
-					# Assign it to index
-					deg_df.index = list(deg_df['index_temp'])
-
-					DEG_num_list.append(deg_df.shape[0])
-					# Prepare common genes
-					deg_df = pd.DataFrame(deg_df['bfp'])
-					deg_df.columns = [collection]
-					# print deg_df.index.is_unique
-		
-					comm_deg_df = pd.concat([comm_deg_df, deg_df], axis=1)
-					# import pdb;pdb.set_trace();
-					
-				else:
-					# If this collection is not found in meta stat collection, use only stat collection 
-					# Count DEG numbers
-					all_stat = list(test_stat_client.get_all_records(collection))
-					stat_df = pd.DataFrame(all_stat)
-
-					deg_df = stat_df[stat_df['lp'] <= 0.05]
-					# print deg_df.iloc[0:10,]
-					
-					# # remove duplicates
-					# deg_df = filtered_duplicate_by(deg_df, 'lp')
-					
-					# print deg_df.iloc[0:3, ]
-					# index_of_duplicates = deg_df.sort(['lp'], ascending=True).duplicated(cols_to_use, 'first')
-					# # filter dataframe
-					# deg_df = deg_df[np.invert(index_of_duplicates)]
-
-					# change dataframe index to symbol
-					# If it's a collection for protein, change symbol names
-					if 'protein' in collection:
-						deg_df['index_temp'] = list(deg_df['symb'].apply(extract_gene_symbol_from_protein_name))
-					else:
-						deg_df['index_temp'] = list(deg_df['symb'])
-					# print deg_df.iloc[0:10,]
-					# print deg_df.iloc[0:3, ]
-					
-					# Remove empty temp symbols
-					deg_df = deg_df[np.invert(deg_df['index_temp'] == '')]
-					
-					# remove duplicates
-					deg_df = filtered_duplicate_by(deg_df, by='lp', group_index=['index_temp'])
-					
-					# Assign it to index
-					deg_df.index = list(deg_df['index_temp'])
-
-					DEG_num_list.append(deg_df.shape[0])
-					# Prepare common genes
-					deg_df = pd.DataFrame(deg_df['lp'])
-					deg_df.columns = [collection]
-					
-					new_comm_df = pd.concat([comm_deg_df, deg_df], axis=1)
-					# print len(deg_df.index)
-					# print deg_df.index
-					# print comm_deg_df.shape
-					print new_comm_df.shape
-					print new_comm_df.index
-					print len(new_comm_df.index)
-					# print deg_df.iloc[0:3, ]
-					comm_deg_df = pd.concat([comm_deg_df, deg_df], axis=1)
-					# import pdb;pdb.set_trace();
+			comm_deg_df, DEG_num_list, unique_symbol_num_list = get_deg_tables_from_collection(collection_names, meta_collections, meta_stat_client, test_stat_client)
 
 			# Filter out those records with at least one NaN (They do not appear in all collections) 
 			# Add one column to indicate NaN number
@@ -615,8 +552,10 @@ def cross_study(request):
 					'table_header_names' : table_header_names,
 					'common_deg_names' : common_deg_names,
 					'collection_names' : collection_names,
+					'csv_url_part' : '+'.join(collection_names),
 					'common_deg_stat' : comm_deg_stat_list,
-					'common_deg_number_list' : DEG_num_list
+					'common_deg_number_list' : DEG_num_list, 
+					'unique_symbol_num_list' : unique_symbol_num_list
 				})
 		
 		return render(request, 'cross_study.html', {

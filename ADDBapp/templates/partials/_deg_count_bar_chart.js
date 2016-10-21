@@ -19,7 +19,7 @@ $(function() {
         },
 
         title:{
-            text: 'DEG number accross different groups'
+            text: 'DEG & Unique feature number accross different groups'
         },
         
         xAxis: {
@@ -33,11 +33,11 @@ $(function() {
             //     }
             // },
             title:{
-                text: 'DEG number'
+                text: 'Number'
             }
         },
 
-        // colors : ['rgba(102,0,102,1)', 'rgba(129,129,129,1)'],
+        colors : ['rgba(0, 205, 0, 0.2)', 'rgba(0, 0, 205, 0.2)'],
 
         plotOptions: {
             series: {
@@ -78,6 +78,9 @@ $(function() {
             {
                 data : {{ common_deg_number_list }},
                 name : 'DEG number'
+            }, {
+                data : {{ unique_symbol_num_list }},
+                name : 'Unique feature number'
             }
 
         ]
