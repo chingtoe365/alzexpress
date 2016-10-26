@@ -25,7 +25,11 @@ limma_calculator <- function(df, class_lst) {
     fit2i = contrasts.fit(fit, contrast.matrix)
     fit2i = eBayes(fit2i)
 
-    result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
+    # drop age and gender as factors
+    length_of_stats = length(fit2i$t)
+    to_drop_ind = c(length_of_stats-1, length_of_stats)
+
+    result = list(t_score=as.numeric(fit2i$t)[-to_drop_ind], p_value=as.numeric(fit2i$p.value)[-to_drop_ind])
 
     return(result) 
 }
@@ -35,11 +39,17 @@ t_calculator <- function(df, class_lst) {
 	### function to calculate t statistics
 		# columns of df stands for samples
 		# rows of df stands for featurs
-	df_0 = df[, class_lst == 0]
+	# Drop age and gender
+    to_drop_ind = c(which(rownames(df)=="age"), which(rownames(df)=="gender"))
+    df = df[-to_drop_ind, ]
+    
+    df_0 = df[, class_lst == 0]
 	df_1 = df[, class_lst == 1]
 	sti = row.ttest.stat(df_0, df_1)
 	pval = 2 * (1 - pt(abs(sti), df = (length(class_lst) - 2)))
-	result = list(t_score=sti, p_value=pval)
+	# drop age and gender as factors
+    
+    result = list(t_score=sti, p_value=pval)
 
 	return(result) 
 }

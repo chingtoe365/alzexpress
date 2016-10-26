@@ -203,8 +203,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			if debug:
 				print "Sample count: %s" % (len(sample_records_list), )
 
-			age_list = [x['age'] for x in sample_records_list]
-			gender_list = [x['gender'] for x in sample_records_list]
+			age_list = [int(x['age']) for x in sample_records_list]
+			gender_list = [1 if x['gender']=='M' else 2 for x in sample_records_list]
 			
 			# age_list = []
 			# gender_list = []
@@ -235,6 +235,11 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			expression_table = extract_expression_table_by_sample_records(sample_records_list, debug)
 
 			expression_table.columns = probe_id_list
+
+			# Append age and gender
+			expression_table['age'] = age_list
+			expression_table['gender'] = gender_list
+
 			print "Expression table extracted"
 
 			if debug:
