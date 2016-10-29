@@ -203,8 +203,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			if debug:
 				print "Sample count: %s" % (len(sample_records_list), )
 
-			age_list = [int(x['age']) for x in sample_records_list]
-			gender_list = [1 if x['gender']=='M' else 2 for x in sample_records_list]
+			age_list = [int(x['age']) if x['age'] != 'NA' else None for x in sample_records_list]
+			gender_list = [None if x['gender']=='NA' else 1 if x['gender']=='M' else 2 for x in sample_records_list]
 			
 			# age_list = []
 			# gender_list = []

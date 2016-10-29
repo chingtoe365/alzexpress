@@ -68,6 +68,7 @@ DiseaseStateExtract <- function(input)
 	PD_indicator = c("parkinson")
 	BC_indicator = c("breast cancer")
 	MS_indicator = c("multiple sclerosis")
+	HD_indicator = c("Huntington's disease")
 	Other_dementia_indicator = c("other_dementias")
 	
 	AD_check = any(sapply(AD_indicator, function(x){
@@ -86,6 +87,9 @@ DiseaseStateExtract <- function(input)
 			grepl(x, inp, ignore.case=T)
 			}))	
 	MS_check = any(sapply(MS_indicator, function(x){
+			grepl(x, inp, ignore.case=T)
+			}))
+	HD_check = any(sapply(HD_indicator, function(x){
 			grepl(x, inp, ignore.case=T)
 			}))
 	Other_dementia_check = any(sapply(Other_dementia_indicator, function(x){
@@ -128,6 +132,10 @@ DiseaseStateExtract <- function(input)
 	else if(MS_check)
 	{
 		return("MS")
+	}
+	else if(HD_check)
+	{
+		return("HD")
 	}
 	else if(Other_dementia_check)
 	{
