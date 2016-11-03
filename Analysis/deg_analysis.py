@@ -439,18 +439,21 @@ if __name__ == "__main__" :
 		test_stat_client = TestStatClient()
 		meta_stat_client = MetaStatClient()
 
-		collection_name = "%s_%s_%s-%s_%s-vs-%s" % (args.data_type, 
-													args.tissue, 
-													args.group_category, 
-													args.group_name,
-													args.state_1,
-													args.state_0)
+		name = args.group_name
 
-		print "Stat collection to do meta-analysis: %s" % (collection_name, )
+		for name in ['CE', 'EC', 'HIP', 'MTG', 'SFG', 'TC', ]:
+			collection_name = "%s_%s_%s-%s_%s-vs-%s" % (args.data_type, 
+														args.tissue, 
+														args.group_category, 
+														name,
+														args.state_1,
+														args.state_0)
 
-		execute_meta_analysis(collection_name, test_stat_client, meta_stat_client, debug=args.debug, store=args.store)
+			print "Stat collection to do meta-analysis: %s" % (collection_name, )
 
-		print "Meta-analysis finished!"
+			execute_meta_analysis(collection_name, test_stat_client, meta_stat_client, debug=args.debug, store=args.store)
+
+			print "Meta-analysis finished!"
 
 
 	elif args.method == 'sep':
