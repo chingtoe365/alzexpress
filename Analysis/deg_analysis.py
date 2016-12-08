@@ -222,7 +222,7 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			print "Meta info of this datset"
 			print "Data type : %s" % (data_type, )
 			print "Tissue : %s" % (tissue, )
-			print "Probe & symbol count : %s" % (len(feature_probe_symbol_dict.keys()), )
+			# print "Probe & symbol count : %s" % (len(feature_probe_symbol_dict.keys()), )
 			print "To calculate category groups: %s" % (categories, )
 		
 		# If no category found, then it is a full-scale calculation
@@ -249,9 +249,15 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			if debug:
 				print "Sample count: %s" % (len(sample_records_list), )
 
-			age_list = [int(x['age']) if x['age'] != 'NA' else None for x in sample_records_list]
-			gender_list = [None if x['gender']=='NA' else 1 if x['gender']=='M' else 2 for x in sample_records_list]
-			
+			if 'age' in sample_records_list[0]:
+				age_list = [int(x['age']) if x['age'] != 'NA' else None for x in sample_records_list]
+			else:
+				age_list = None
+
+			if 'gender' in sample_records_list[0]:
+				gender_list = [None if x['gender']=='NA' else 1 if x['gender']=='M' else 2 for x in sample_records_list]
+			else:
+				gender_list = None
 			# age_list = []
 			# gender_list = []
 			# for record in sample_records:
@@ -286,8 +292,11 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 				expression_table.columns = feature_probe_symbol_dict
 
 			# Append age and gender
-			expression_table['age'] = age_list
-			expression_table['gender'] = gender_list
+			if age_list:
+				expression_table['age'] = age_list
+			
+			if gender_list:
+				expression_table['gender'] = gender_list
 
 			print "Expression table extracted"
 

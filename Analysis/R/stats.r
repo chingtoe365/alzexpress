@@ -25,10 +25,17 @@ limma_calculator <- function(df, class_lst) {
     fit2i = contrasts.fit(fit, contrast.matrix)
     fit2i = eBayes(fit2i)
 
-    # drop age and gender as factors
-    length_of_stats = length(fit2i$t)
-    to_drop_ind = c(length_of_stats-1, length_of_stats)
-
+    # drop age and gender as factors if any
+    # For RNA sequencing data no need to do so
+    to_drop_ind = c()
+    # to_drop_ind = c(length_of_stats-1, length_of_stats)
+    # length_of_stats = length(fit2i$t)    
+    if(any(rownames(df)=="age")){
+        to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
+    }
+    if(any(rownames(df)=="gender")){
+        to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
+    }
     result = list(t_score=as.numeric(fit2i$t)[-to_drop_ind], p_value=as.numeric(fit2i$p.value)[-to_drop_ind])
 
     return(result) 
@@ -39,8 +46,18 @@ t_calculator <- function(df, class_lst) {
 	### function to calculate t statistics
 		# columns of df stands for samples
 		# rows of df stands for featurs
-	# Drop age and gender
-    to_drop_ind = c(which(rownames(df)=="age"), which(rownames(df)=="gender"))
+	
+    ### Drop age and gender if any ###
+    to_drop_ind = c()
+    # to_drop_ind = c(length_of_stats-1, length_of_stats)
+    # length_of_stats = length(fit2i$t)    
+    if(any(rownames(df)=="age")){
+        to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
+    }
+    if(any(rownames(df)=="gender")){
+        to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
+    }
+    # to_drop_ind = c(which(rownames(df)=="age"), which(rownames(df)=="gender"))
     df = df[-to_drop_ind, ]
     
     df_0 = df[, class_lst == 0]

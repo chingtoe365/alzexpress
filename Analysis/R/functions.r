@@ -247,7 +247,7 @@ FromExpressionTableToList <- function(exprsTable, phenoTable, phenoVarArr, pheno
 		result[[count]] = c(result[[count]], list(probesInExp))
 		result[[count]] = c(result[[count]], list(data_type))
 		result[[count]] = c(result[[count]], list(tissue))
-		result[[count]] = c(result[[count]], list(exprsTable[, count]))
+		result[[count]] = c(result[[count]], list(as.numeric(exprsTable[, count])))
 		# directExtractGroup = c("region", "pres", "sample_accession", "data_type", "organism")
 		directExtractGroup = c("pres", "sample_accession", "organism")
 		count2 = 1
@@ -289,10 +289,13 @@ FromExpressionTableToList <- function(exprsTable, phenoTable, phenoVarArr, pheno
 			count2 = count2 + 1
 		}
 
-		if(tissue == "brain"){
+		if(tissue == "brain" & data_type != "RNAseq"){
 			# Add region_full_name field
 			result[[count]] = c(result[[count]], list(region_full_name))
 			names(result[[count]]) = c("dataset_accession", "platform_name", "platform_id", "probe_id", "data_type", "tissue", "expression_value", phenoVarNames, "region_full_name")
+		}else if(data_type == "RNAseq"){
+			# print("RNASEQ!!!!!!!!!")
+			names(result[[count]]) = c("dataset_accession", "platform_name", "platform_id", "symbol", "data_type", "tissue", "expression_value", phenoVarNames)			
 		}else{
 			names(result[[count]]) = c("dataset_accession", "platform_name", "platform_id", "probe_id", "data_type", "tissue", "expression_value", phenoVarNames)
 		}
@@ -350,4 +353,32 @@ FromAnnotationTableToList <- function(anno_table, entrez_gene_id_col, probe_id_c
 	# Remove initial thing
 	# anno_list = anno_list[-1]
 	return(anno_list)
+}
+
+FilterProbesByLargestFoldChange <- function(exprs_table, ad_index, control_index){
+	# filter duplicate rows/features by fold change
+	# first row must be symbols
+	unqiue_features = unique(array(as.character(exprs_table[, 1])))
+	new_table = matrix(sapply(unqiue_features, function(x){
+				matches = exprs_table[, 1] == x
+				target_matrix = exprs_table[matches, ]
+				
+				if(sum(matches) == 1){
+					# only 1 match
+					return(as.numeric(target_matrix[2:ncol(target_matrix)]))
+				}
+				# many matches
+				fold_changes = apply(target_matrix, 1, function(y){
+					ad_dat = as.numeric(y[ad_index])
+					cn_dat = as.numeric(y[control_index])
+					return(abs(mean(ad_dat, na.rm=TRUE)-mean(cn_dat, na.rm=TRUE)))
+					})
+
+				return(as.numeric(target_matrix[which.max(fold_changes), 2:ncol(target_matrix)]))
+				# exprs_table[exprs_table[, 1] == x, ]
+			}), ncol=ncol(exprs_table)-1)
+	colnames(new_table) = colnames(exprs_table)[-1]
+	rownames(new_table) = unqiue_features
+	return(new_table)
+
 }
