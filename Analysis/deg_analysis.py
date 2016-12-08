@@ -83,7 +83,7 @@ def prepare_stat_record_and_insert(dataset, collection_name, sample_count, probe
 			ttest_t = t_result_dict['t_score'][count]
 			ttest_p = t_result_dict['p_value'][count]
 			fc = fold_change[count]
-			evalue = list(expression_table[probe])
+			evalue = list(expression_table[feature])
 			new_stat_record = {
 					'dataset_accession' : dataset,
 					'symb' : feature,
