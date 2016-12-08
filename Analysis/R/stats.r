@@ -64,7 +64,9 @@ t_calculator <- function(df, class_lst) {
         to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
     }
     # to_drop_ind = c(which(rownames(df)=="age"), which(rownames(df)=="gender"))
-    df = df[-to_drop_ind, ]
+    if(length(to_drop_ind)>0){
+        df = df[-to_drop_ind, ]
+    }
     
     df_0 = df[, class_lst == 0]
 	df_1 = df[, class_lst == 1]
