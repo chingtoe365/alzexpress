@@ -37,7 +37,7 @@ limma_calculator <- function(df, class_lst) {
         to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
     }
     # print(to_drop_ind)
-    if(to_drop_ind != NULL){
+    if(length(to_drop_ind)>0){
         result = list(t_score=as.numeric(fit2i$t)[-to_drop_ind], p_value=as.numeric(fit2i$p.value)[-to_drop_ind])    
     }else{
         result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
