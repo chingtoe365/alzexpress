@@ -25,49 +25,88 @@ def prepare_stat_record_and_insert(dataset, collection_name, sample_count, probe
 	"""
 
 	print "Stroring test statistics..."
+	if probe_id_list:
+		# For microarray data
+		n_processed = 0
+		n_pairs = len(probe_id_list)
+		bar = progressbar.ProgressBar(maxval=n_pairs,
+									widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+		bar.start()
+		count = 0
+		for probe in probe_id_list :
+			if probe in feature_probe_symbol_dict.keys():
+				symbol = feature_probe_symbol_dict[probe][0]
+			else :
+				symbol = ''
+			limma_t = limma_result_dict['t_score'][count]
+			limma_p = limma_result_dict['p_value'][count]
+			ttest_t = t_result_dict['t_score'][count]
+			ttest_p = t_result_dict['p_value'][count]
+			fc = fold_change[count]
+			evalue = list(expression_table[probe])
+			new_stat_record = {
+					'dataset_accession' : dataset,
+					'pid' : probe,
+					'symb' : symbol,
+					'lt' : limma_t,
+					'lp' : limma_p,
+					'tt' : ttest_t,
+					'tp' : ttest_p,
+					'fc' : fc,
+					'eval' : evalue
+			}
 
-	n_processed = 0
-	n_pairs = len(probe_id_list)
-	bar = progressbar.ProgressBar(maxval=n_pairs,
-								widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-	bar.start()
-	count = 0
-	for probe in probe_id_list :
-		if probe in feature_probe_symbol_dict.keys():
-			symbol = feature_probe_symbol_dict[probe][0]
-		else :
-			symbol = ''
-		limma_t = limma_result_dict['t_score'][count]
-		limma_p = limma_result_dict['p_value'][count]
-		ttest_t = t_result_dict['t_score'][count]
-		ttest_p = t_result_dict['p_value'][count]
-		fc = fold_change[count]
-		evalue = list(expression_table[probe])
-		new_stat_record = {
-				'dataset_accession' : dataset,
-				'pid' : probe,
-				'symb' : symbol,
-				'lt' : limma_t,
-				'lp' : limma_p,
-				'tt' : ttest_t,
-				'tp' : ttest_p,
-				'fc' : fc,
-				'eval' : evalue
-		}
+			if debug : 
+				print new_stat_record
+				# exit()
 
-		if debug : 
-			print new_stat_record
-			# exit()
+			if store:
+				test_stat_client.insert_record(collection_name, new_stat_record)
 
-		if store:
-			test_stat_client.insert_record(collection_name, new_stat_record)
+			n_processed += 1
+			bar.update(n_processed)
+			count = count + 1
 
-		n_processed += 1
-		bar.update(n_processed)
-		count = count + 1
+		bar.finish()
 
-	bar.finish()
-	
+	else:
+		# For sequencing data
+		n_processed = 0
+		n_pairs = len(feature_probe_symbol_dict)
+		bar = progressbar.ProgressBar(maxval=n_pairs,
+									widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+		bar.start()
+		count = 0
+		for feature in feature_probe_symbol_dict :
+			limma_t = limma_result_dict['t_score'][count]
+			limma_p = limma_result_dict['p_value'][count]
+			ttest_t = t_result_dict['t_score'][count]
+			ttest_p = t_result_dict['p_value'][count]
+			fc = fold_change[count]
+			evalue = list(expression_table[probe])
+			new_stat_record = {
+					'dataset_accession' : dataset,
+					'symb' : feature,
+					'lt' : limma_t,
+					'lp' : limma_p,
+					'tt' : ttest_t,
+					'tp' : ttest_p,
+					'fc' : fc,
+					'eval' : evalue
+			}
+
+			if debug : 
+				print new_stat_record
+				# exit()
+
+			if store:
+				test_stat_client.insert_record(collection_name, new_stat_record)
+
+			n_processed += 1
+			bar.update(n_processed)
+			count = count + 1
+
+		bar.finish()
 	print "Finished test statistics storing!"
 
 	return True
@@ -152,11 +191,16 @@ def variable_prepare(dataset, sample_client, annotation_client):
 	platform_id = sample_client.get_platform_id(dataset)
 
 	# Get probe id list
-	probe_id_list = sample_client.get_probe_id_list(dataset)
-	# Get corresponding feature symbol list
-	feature_probe_symbol_dict = get_feature_probe_symbol_dict_list(data_type, probe_id_list, platform_id, annotation_client)
-	# feature_probe_symbol_dict = get_feature_probe_symbol_dict_list(probe_id_list, platform_type, annotation_client)
-
+	try:
+		probe_id_list = sample_client.get_probe_id_list(dataset)
+	except KeyError as e:
+		probe_id_list = None
+	
+	if probe_id_list:
+		# Get corresponding feature symbol list
+		feature_probe_symbol_dict = get_feature_probe_symbol_dict_list(data_type, probe_id_list, platform_id, annotation_client)
+	else:
+		feature_probe_symbol_dict = sample_client.get_symbol_list(dataset)
 	# Get all category groups
 	categories = sample_client.get_all_categories_in_dataset(dataset)
 
@@ -171,6 +215,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 		data_type, tissue, probe_id_list, feature_probe_symbol_dict, categories = variable_prepare(dataset,
 																									sample_client,
 																									annotation_client)
+		# feature_list = feature_probe_symbol_dict if probe_id_list is None
+
 		print "Variables prepared"
 		if debug:
 			print "Meta info of this datset"
@@ -234,7 +280,10 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 
 			expression_table = extract_expression_table_by_sample_records(sample_records_list, debug)
 
-			expression_table.columns = probe_id_list
+			if probe_id_list:
+				expression_table.columns = probe_id_list
+			else:
+				expression_table.columns = feature_probe_symbol_dict
 
 			# Append age and gender
 			expression_table['age'] = age_list
@@ -441,6 +490,10 @@ if __name__ == "__main__" :
 
 		name = args.group_name
 
+		"""
+		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		Remove this loop once exected
+		"""
 		for name in ['CE', 'EC', 'HIP', 'MTG', 'SFG', 'TC', ]:
 			collection_name = "%s_%s_%s-%s_%s-vs-%s" % (args.data_type, 
 														args.tissue, 

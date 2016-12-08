@@ -39,6 +39,9 @@ class SampleClient():
 	def get_probe_id_list(self, dataset):
 		return self.db[dataset].find_one()["probe_id"]
 
+	def get_symbol_list(self, dataset):
+		return self.db[dataset].find_one()["symbol"]
+
 	def get_all_categories_in_dataset(self, dataset) :
 		'''
 			Structure of the return list
