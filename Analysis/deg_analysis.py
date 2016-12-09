@@ -100,7 +100,7 @@ def prepare_stat_record_and_insert(dataset, collection_name, sample_count, probe
 				# exit()
 
 			if store:
-				test_stat_client.insert_record(collection_name, new_stat_record)
+				test_stat_client.insert_no_probe_record(collection_name, new_stat_record)
 
 			n_processed += 1
 			bar.update(n_processed)

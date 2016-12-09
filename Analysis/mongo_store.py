@@ -297,6 +297,32 @@ class TestStatClient():
 				upsert=True
 		)
 
+	def insert_no_probe_record(self, collection, record):
+		"""
+			Insert stat record in collection named after: 
+				datatype/tissue/category/comparison/
+			Each record looks like:
+			{
+				'dataset_accession' : 'GSE5281',
+				'symb' : 'APOE',
+				'lt' : -1.1,
+				'lp' : 0.0456,
+				'tt' : -2.5,
+				'tp' : 0.006,
+				'eval' : [23.23,2.23,.....]
+			}
+		"""
+		
+		return self.db[collection].update({
+					'dataset_accession' : record['dataset_accession'],
+					'symb' : record['symb']
+				}, 
+				{
+					'$set' : record,
+				},
+				upsert=True
+		)
+
 	def update_multi(self, collection, query, record):
 		return self.db[collection].update(query, 
 			{
