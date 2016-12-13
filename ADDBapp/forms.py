@@ -130,6 +130,7 @@ class featureSelectionForm(forms.Form):
 class tissueDataTypeSelectionForm(forms.Form):
 	RNA_blood_region__ALL_AD__vs__Control = forms.BooleanField(label="RNA - Blood", required=False)
 	protein_blood_region__ALL_AD__vs__Control = forms.BooleanField(label="Protein - Blood", required=False)
+	protein_blood_region__ALL_AD__vs__Control = forms.BooleanField(label="RNAseq - PFC", required=False)
 	RNA_brain_region__PFC_AD__vs__Control = forms.BooleanField(label="RNA - PFC", required=False)
 	RNA_brain_region__HIP_AD__vs__Control = forms.BooleanField(label="RNA - HIP", required=False)
 	RNA_brain_region__PC_AD__vs__Control = forms.BooleanField(label="RNA - PC", required=False)
