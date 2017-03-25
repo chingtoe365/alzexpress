@@ -5,7 +5,7 @@ from rpy2.robjects.packages import importr
 import rpy2.robjects as ro
 import pandas.rpy.common as com
 
-def calculate_limma_and_t(table, disease_state, debug=False):
+def calculate_limma_and_t(table, disease_state, age, gender, debug=False):
 	'''
 		Pass variables to R
 	'''
@@ -16,6 +16,8 @@ def calculate_limma_and_t(table, disease_state, debug=False):
 	ro.globalenv['table'] = rdf
 	# ro.globalevn['symbols'] = symbols
 	ro.globalenv['class'] = disease_state
+	ro.globalenv['age'] = age
+	ro.globalenv['gender'] = gender
 	
 	'''
 		Call statistic calculator functions

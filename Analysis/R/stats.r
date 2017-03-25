@@ -1,5 +1,6 @@
 library(limma)
-limma_calculator <- function(df, class_lst) {
+# limma_calculator <- function(df, class_lst) {
+limma_calculator <- function(df, class_lst, age, gender) {
 	
 	### function to calculate limma scores
     # print(df[1:4, 1:4])
@@ -7,7 +8,8 @@ limma_calculator <- function(df, class_lst) {
     # df = as.matrix(df)
     # print(df[1:4, 1:4])
     group = as.factor(class_lst)
-    design = model.matrix(~-1 + group)
+    # design = model.matrix(~-1 + group)
+    design = model.matrix(~0 + group + age + gender)
     # print("OK")
     # apply(df, 2, function(x){
     #         print(which(!is.numeric(x)))
@@ -27,22 +29,22 @@ limma_calculator <- function(df, class_lst) {
 
     # drop age and gender as factors if any
     # For RNA sequencing data no need to do so
-    to_drop_ind = c()
-    # to_drop_ind = c(length_of_stats-1, length_of_stats)
-    # length_of_stats = length(fit2i$t)    
-    if(any(rownames(df)=="age")){
-        to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
-    }
-    if(any(rownames(df)=="gender")){
-        to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
-    }
+    # to_drop_ind = c()
+    # # to_drop_ind = c(length_of_stats-1, length_of_stats)
+    # # length_of_stats = length(fit2i$t)    
+    # if(any(rownames(df)=="age")){
+    #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
+    # }
+    # if(any(rownames(df)=="gender")){
+    #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
+    # }
     # print(to_drop_ind)
-    if(length(to_drop_ind)>0){
-        result = list(t_score=as.numeric(fit2i$t)[-to_drop_ind], p_value=as.numeric(fit2i$p.value)[-to_drop_ind])    
-    }else{
-        result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
-    }
-    
+    # if(length(to_drop_ind)>0){
+    #     result = list(t_score=as.numeric(fit2i$t)[-to_drop_ind], p_value=as.numeric(fit2i$p.value)[-to_drop_ind])    
+    # }else{
+    #     result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
+    # }
+    result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
 
     return(result) 
 }
@@ -53,20 +55,20 @@ t_calculator <- function(df, class_lst) {
 		# columns of df stands for samples
 		# rows of df stands for featurs
 	
-    ### Drop age and gender if any ###
-    to_drop_ind = c()
-    # to_drop_ind = c(length_of_stats-1, length_of_stats)
-    # length_of_stats = length(fit2i$t)    
-    if(any(rownames(df)=="age")){
-        to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
-    }
-    if(any(rownames(df)=="gender")){
-        to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
-    }
-    # to_drop_ind = c(which(rownames(df)=="age"), which(rownames(df)=="gender"))
-    if(length(to_drop_ind)>0){
-        df = df[-to_drop_ind, ]
-    }
+    # ### Drop age and gender if any ###
+    # to_drop_ind = c()
+    # # to_drop_ind = c(length_of_stats-1, length_of_stats)
+    # # length_of_stats = length(fit2i$t)    
+    # if(any(rownames(df)=="age")){
+    #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
+    # }
+    # if(any(rownames(df)=="gender")){
+    #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
+    # }
+    # # to_drop_ind = c(which(rownames(df)=="age"), which(rownames(df)=="gender"))
+    # if(length(to_drop_ind)>0){
+    #     df = df[-to_drop_ind, ]
+    # }
     
     df_0 = df[, class_lst == 0]
 	df_1 = df[, class_lst == 1]

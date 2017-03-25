@@ -111,7 +111,7 @@ def prepare_stat_record_and_insert(dataset, collection_name, sample_count, probe
 
 	return True
 
-def calculate_and_store_statistic_of_given_table(table, disease_state, debug=False):
+def calculate_and_store_statistic_of_given_table(table, disease_state, age, gender, debug=False):
 	"""
 		stats to calculate:
 			fold change
@@ -128,7 +128,7 @@ def calculate_and_store_statistic_of_given_table(table, disease_state, debug=Fal
 		"Table glimpse : %s" % (table.iloc[0:2, 0:2])
 
 	# Call R to calculate limma & t test
-	limma_result_dict, t_result_dict = calculate_limma_and_t(table, disease_state, debug)
+	limma_result_dict, t_result_dict = calculate_limma_and_t(table, disease_state, age, gender, debug)
 	
 	# Calculate fold change
 	fold_change = calculate_fold_change_for_table(table, disease_state, debug)
@@ -292,11 +292,11 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 				expression_table.columns = feature_probe_symbol_dict
 
 			# Append age and gender
-			if age_list:
-				expression_table['age'] = age_list
+			# if age_list:
+			# 	expression_table['age'] = age_list
 			
-			if gender_list:
-				expression_table['gender'] = gender_list
+			# if gender_list:
+			# 	expression_table['gender'] = gender_list
 
 			print "Expression table extracted"
 
@@ -321,6 +321,8 @@ def calculate_and_store_stat(datasets, sample_client, annotation_client, test_st
 			# processed_table, refined_gene_symbol_list = expression_table_preprocessing(expression_table, gene_symbol_list, disease_state_list)
 			limma_result_dict, t_result_dict, fold_change = calculate_and_store_statistic_of_given_table(expression_table,  
 																										disease_state_list,
+																										age_list,
+																										gender_list,
 																										debug)
 			print "Statistics calculated"
 			# Store result in database
