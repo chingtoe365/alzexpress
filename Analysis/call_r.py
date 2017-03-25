@@ -131,5 +131,6 @@ if __name__ == '__main__':
 	gender = [1,2,2,2,1,1,2]
 	disease_state = [0,1,1,0,0,1,1]
 	# import pdb;pdb.set_trace()
-	limmaresult, ttestresult = calculate_limma_and_t(table, disease_state, age, gender, True)
-	print test
+	limmaresult, ttestresult = calculate_limma_and_t(table.transpose(), disease_state, age, gender, True)
+	print limmaresult
+	print ttestresult

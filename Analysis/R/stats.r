@@ -2,7 +2,8 @@ library(limma)
 # limma_calculator <- function(df, class_lst) {
 limma_calculator <- function(df, class_lst, age, gender) {
     group = as.factor(class_lst)
-    design = model.matrix(~0 + age + gender + group)
+    design = model.matrix(~0 + group + age + gender)
+    df = t(df)
     fit = lmFit(t(df), design)
     contrast.matrix = makeContrasts("group1 - group0", levels = design)
 
