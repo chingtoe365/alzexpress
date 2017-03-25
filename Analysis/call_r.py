@@ -9,9 +9,13 @@ def calculate_limma_and_t(table, disease_state, age, gender, debug=False):
 	'''
 		Pass variables to R
 	'''
-	
+
 	# eliminate null age & gender samples
 	to_keep_indexes = age is not None and gender is not None
+	
+	if debug: 
+		import pdb;pdb.set_trace()
+
 	table = table[to_keep_indexes, ]
 	disease_state = disease_state[to_keep_indexes]
 	age = age[to_keep_indexes]
@@ -113,3 +117,14 @@ def age_gender_normalize(exprs_table, age_lst, gender_lst):
 	stayed_index = com.load_data('result$stayed_samples_index')
 
 	return expression_table, stayed_index
+
+
+if __name__ == '__main__':
+	table = pd.dataFrame({"a" : [1,23,42,2,2,1,2],
+						"b" : [2,3,2,4,1,4,5],
+						"c" : [3,4,5,4,3,3,2]})
+	age = [45,3,2,None, 3,2,3]
+	gender = [1,2,2,2,1,1,2]
+	disease_state = [2,1,1,2,2,1,1]
+	test = calculate_limma_and_t(table, disease_state, age, gender)
+	print test

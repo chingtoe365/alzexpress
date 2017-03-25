@@ -1,8 +1,6 @@
 library(limma)
 # limma_calculator <- function(df, class_lst) {
 limma_calculator <- function(df) {
-    # remove null age and gender records
-    df = df[(!is.na(age)) && (!is.na(gender)), ]
     # get class/age/gender
     class_lst = df[,"class"]
     age = df[,"age"]
