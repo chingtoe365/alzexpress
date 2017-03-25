@@ -9,6 +9,13 @@ def calculate_limma_and_t(table, disease_state, age, gender, debug=False):
 	'''
 		Pass variables to R
 	'''
+	
+	# eliminate null age & gender samples
+	to_keep_indexes = age is not None and gender is not None
+	table = table[to_keep_indexes, ]
+	disease_state = disease_state[to_keep_indexes]
+	age = age[to_keep_indexes]
+	gender = gender[to_keep_indexes]
 
 	# Convert pandas.dataFrame to R dataframe
 	rdf = com.convert_to_r_matrix(table)
@@ -31,7 +38,7 @@ def calculate_limma_and_t(table, disease_state, age, gender, debug=False):
 	ro.r('probe_names <- rownames(table)')
 	ro.r('table <- as.data.frame(matrix(as.numeric(table), nrow=nrow(table)))')
 	ro.r('rownames(table) <- probe_names')
-	ro.r('limma_result <- limma_calculator(table, unlist(class))')
+	ro.r('limma_result <- limma_calculator(table, unlist(class), age, gender)')
 	ro.r('ttest_result <- t_calculator(table, unlist(class))')
 
 	'''	

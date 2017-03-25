@@ -1,53 +1,73 @@
 library(limma)
 # limma_calculator <- function(df, class_lst) {
-limma_calculator <- function(df, class_lst, age, gender) {
-	
-	### function to calculate limma scores
-    # print(df[1:4, 1:4])
-    # print(typeof(df[1,1]))
-    # df = as.matrix(df)
-    # print(df[1:4, 1:4])
+limma_calculator <- function(df) {
+    # remove null age and gender records
+    df = df[(!is.na(age)) && (!is.na(gender)), ]
+    # get class/age/gender
+    class_lst = df[,"class"]
+    age = df[,"age"]
+    gender = df[,"gender"]
     group = as.factor(class_lst)
-    # design = model.matrix(~-1 + group)
     design = model.matrix(~0 + group + age + gender)
-    # print("OK")
-    # apply(df, 2, function(x){
-    #         print(which(!is.numeric(x)))
-    #     })
-    # print(df[2,1])
-    # print(df[!is.numeric(df)])
-    # print(df[1])
     fit = lmFit(df, design)
-    # print("OK")
-    # print(fit)
-    # whether it's group0 - group1 OR group1 - group0??
+
     contrast.matrix = makeContrasts("group1 - group0", levels = design)
-    # print("OK")
-    # print(contrast.matrix)
+
     fit2i = contrasts.fit(fit, contrast.matrix)
     fit2i = eBayes(fit2i)
 
-    # drop age and gender as factors if any
-    # For RNA sequencing data no need to do so
-    # to_drop_ind = c()
-    # # to_drop_ind = c(length_of_stats-1, length_of_stats)
-    # # length_of_stats = length(fit2i$t)    
-    # if(any(rownames(df)=="age")){
-    #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
-    # }
-    # if(any(rownames(df)=="gender")){
-    #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
-    # }
-    # print(to_drop_ind)
-    # if(length(to_drop_ind)>0){
-    #     result = list(t_score=as.numeric(fit2i$t)[-to_drop_ind], p_value=as.numeric(fit2i$p.value)[-to_drop_ind])    
-    # }else{
-    #     result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
-    # }
     result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
 
     return(result) 
 }
+# limma_calculator <- function(df, class_lst, age, gender) {
+	
+# 	### function to calculate limma scores
+#     # print(df[1:4, 1:4])
+#     # print(typeof(df[1,1]))
+#     # df = as.matrix(df)
+#     # print(df[1:4, 1:4])
+#     group = as.factor(class_lst)
+#     # design = model.matrix(~-1 + group)
+#     design = model.matrix(~0 + group + age + gender)
+#     # print("OK")
+#     # apply(df, 2, function(x){
+#     #         print(which(!is.numeric(x)))
+#     #     })
+#     # print(df[2,1])
+#     # print(df[!is.numeric(df)])
+#     # print(df[1])
+#     fit = lmFit(df, design)
+#     # print("OK")
+#     # print(fit)
+#     # whether it's group0 - group1 OR group1 - group0??
+#     contrast.matrix = makeContrasts("group1 - group0", levels = design)
+#     # print("OK")
+#     # print(contrast.matrix)
+#     fit2i = contrasts.fit(fit, contrast.matrix)
+#     fit2i = eBayes(fit2i)
+
+#     # drop age and gender as factors if any
+#     # For RNA sequencing data no need to do so
+#     # to_drop_ind = c()
+#     # # to_drop_ind = c(length_of_stats-1, length_of_stats)
+#     # # length_of_stats = length(fit2i$t)    
+#     # if(any(rownames(df)=="age")){
+#     #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="age"))
+#     # }
+#     # if(any(rownames(df)=="gender")){
+#     #     to_drop_ind = c(to_drop_ind, which(rownames(df)=="gender"))   
+#     # }
+#     # print(to_drop_ind)
+#     # if(length(to_drop_ind)>0){
+#     #     result = list(t_score=as.numeric(fit2i$t)[-to_drop_ind], p_value=as.numeric(fit2i$p.value)[-to_drop_ind])    
+#     # }else{
+#     #     result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
+#     # }
+#     result = list(t_score=as.numeric(fit2i$t), p_value=as.numeric(fit2i$p.value))
+
+#     return(result) 
+# }
 
 t_calculator <- function(df, class_lst) {
 	
