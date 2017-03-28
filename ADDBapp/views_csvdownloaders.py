@@ -12,7 +12,7 @@ from views_constants import *
 import pandas as pd
 
 
-def download_cross_study_deg_csv(request, collecton_string):
+def download_cross_study_deg_csv(request, collection_string):
 	"""
 		This page is to display cross study results
 	"""

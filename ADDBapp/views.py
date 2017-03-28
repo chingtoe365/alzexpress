@@ -540,12 +540,12 @@ def cross_study(request):
 			comm_deg_df = comm_deg_df[comm_deg_df['no_nan']].drop(['no_nan'], axis=1)
 			# Turn into a list of dict
 			# comm_deg_stat_list = comm_deg_df.to_dict(orient='records')[0:9]
-			comm_deg_stat_list = comm_deg_df.to_dict(orient='records')
+			# import pdb;pdb.set_trace();
+			comm_deg_stat_list = comm_deg_df.to_dict('records')
 			common_deg_names = list(comm_deg_df.index)
 			# print common_deg_names
 			# print comm_deg_df.iloc[0:9, ]
 
-			# import pdb;pdb.set_trace();
 
 			return render(request, 'cross_study.html', {
 					'form' : form,

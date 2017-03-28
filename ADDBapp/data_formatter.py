@@ -57,7 +57,7 @@ def get_deg_tables_from_collection(collection_names, meta_collections, meta_stat
 			# Count DEG numbers
 			all_stat = list(test_stat_client.get_all_records(collection))
 			stat_df = pd.DataFrame(all_stat)
-
+			# import pdb;pdb.set_trace()
 
 			# change dataframe index to symbol
 			# If it's a collection for protein, change symbol names
